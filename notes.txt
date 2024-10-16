@@ -1,0 +1,664 @@
+Introduction to CSS
+Cascading Style Sheets (CSS) is a style sheet language used to control the look and feel of a website. It's a key tool in web design and is often used with HTML to change the style of web pages and user interfaces. CSS is used to define styles and layouts of web pages written in HTML and XHTML. CSS is a text file with a .css extension. CSS allows you to create the separation of presentation and content, including layout, colors, and fonts, create a single version of a website that auto-adjusts to display properly on all devices except the oldest cellphones, and convey things quickly while improving usability. CSS is a rule-based language that uses coding elements to describe how elements should be presented on screen, paper, in speech, or on other media.
+Introduction to Cascading Style Sheets (CSS) for Web Design
+I. Introduction to Cascading Style Sheets (CSS)
+-------------------------
+
+* Cascading Style Sheets (CSS) is a style sheet language used to control the look and feel of a website.
+* CSS is a key tool in web design and is often used with HTML to change the style of web pages and user interfaces.
+* Cascading Style Sheets (CSS) is used to define styles and layouts of web pages written in HTML and XHTML.
+* CSS is a text file with a .css extension.
+
+II. Overview of CSS
+-----------------
+
+* CSS is a rule-based language that uses coding elements to describe how elements should be presented on screen, paper, in speech, or on other media.
+* CSS allows you to:
+	+ Create the separation of presentation and content, including layout, colors, and fonts.
+	+ Create a single version of a website that auto-adjusts to display properly on all devices except the oldest cellphones.
+	+ Convey things quickly while improving usability.
+
+III. Internet Fundamentals and HTML
+--------------------------------
+
+* The Internet is a global system of computer networks that connect computers and other devices.
+* The Internet is a communication medium for sharing and getting information online.
+* The World Wide Web (WWW) is a system of interconnected public web pages that can be accessed through the Internet.
+* The World Wide Web is a common point of connectivity for information sharing.
+* The World Wide Web is not the same as the Internet.
+* The World Wide Web is made up of three components:
+	+ URL (Uniform Resource Locator)
+	+ HTTP (Hypertext Transfer Protocol)
+	+ HTML (Hypertext Markup Language)
+
+IV. CSS Syntax
+---------------
+
+* CSS syntax can be defined as a rule consists of a selector, property, and its value.
+* The selector points to the HTML element where CSS style is to be applied.
+* Property: value pair that is defined for the specific selector to apply the style.
+* Syntax:
+	selector {
+	property: value;
+	property: value;
+	.
+	.
+	.
+	property: value;
+	}
+* Example:
+	body{
+	margin: 0;
+	background: green;
+	}
+Cascading Style Sheets (CSS) - Introduction, Types, and Selectors
+Cascading Style Sheets (CSS) is a style sheet language used to control the look and feel of a website. It's a key tool in web design and is often used with HTML to change the style of web pages and user interfaces. CSS is used to define styles and layouts of web pages written in HTML and XHTML. A CSS file has a .css extension.
+
+CSS allows you to create the separation of presentation and content, including layout, colors, and fonts. It also enables you to create a single version of a website that auto-adjusts to display properly on all devices except the oldest cellphones. Moreover, CSS helps to convey things quickly while improving usability.
+
+There are three ways to link a CSS style sheet to an HTML document: 
+
+1. The Inline style sheet: The inline style properties are written in a single line separated by semicolons. The properties are placed by using the style attribute inside HTML elements. For example: <p style="background-color:red; border:1px solid black;">. The advantages of inline style sheets include highest precedence over internal and external style sheets and easy and quick approach to add style sheet in a web page. However, it makes a document difficult to maintain and increases download time. Additionally, it does not allow styling pseudo-code.
+
+2. The Internal style sheet: An internal style sheet is defined within the HTML document using the <style> tag. It is placed within the <head> section of the HTML document. The internal style sheet is useful for small styling and it allows you to override external style sheets.
+
+3. The External style sheet: An external style sheet is a separate file that contains the CSS code. It is linked to the HTML document using the <link> tag. The external style sheet is useful for large styling and it allows you to reuse the same style sheet for multiple HTML documents.
+
+CSS Selectors: A CSS selector is a pattern used to select the elements you want to style. There are several types of CSS selectors, including:
+
+- Type selector: It selects elements based on their type. For example: p {font-size:20px; background-color:violet;}
+
+- Class selector: It selects elements that have a specific class attribute. For example: .theory {color:white;}
+
+- ID selector: It selects elements that have a specific ID attribute. For example: #list1 {border:2px solid red;}
+
+- Child selector: It selects elements that are direct children of a specific element. For example: ol>li {font-family:serif;}
+
+- Descendant selector: It selects elements that are descendants of a specific element. For example: ol b {color:cyan}
+
+- Adjacent selector: It selects elements that are adjacent to a specific element. For example: p + h1 {border:5px dotted green;}
+
+- Attribute selector: It selects elements based on their attributes. For example: [id] {border-radius: 25%;}
+
+In conclusion, CSS is a powerful tool for styling web pages and user interfaces. It allows you to separate presentation and content, and to create a single version of a website that auto-adjusts to display properly on all devices. By using CSS selectors, you can target specific elements and apply styles to them. Understanding the different types of CSS selectors and how to use them is essential for effective web design.
+CSS Basics and Selectors
+CSS (Cascading Style Sheets) is a styling language used to control the layout and appearance of web pages written in HTML or XML. CSS syntax can be defined as a rule consists of a selector, property, and its value. The selector points to the HTML element where CSS style is to be applied. A property-value pair is defined for the specific selector to apply the style. 
+
+### CSS Syntax 
+
+The CSS syntax is composed of a selector, followed by a declaration block. The declaration block is enclosed in curly brackets `{}` and contains one or more property-value pairs. Each property-value pair is separated by a semicolon `;`. 
+
+ selector { 
+  property: value; 
+  property: value; 
+  ... 
+  property: value; 
+ } 
+
+Example: 
+
+ body{ 
+  margin: 0; 
+  background: green; 
+ } 
+
+### CSS Selectors 
+
+CSS selectors are patterns used to select the HTML elements to apply style rules. Selectors can be used as conditions to determine the elements that match with the selector. There are nine different types of CSS selectors: 
+
+1. The Universal Selector 
+2. The Type Selector 
+3. The Class Selector 
+4. The ID Selector 
+5. The Child Selector 
+6. The Descendant Selector 
+7. The Adjacent Sibling Selector 
+8. The Attribute Selector 
+9. The Query Selector 
+
+#### 1. The Universal Selector 
+
+The universal selector selects all the elements that are present in an HTML document. It is represented by an asterisk `*` sign. 
+
+*{ property: value; } 
+
+Example: 
+
+*{ margin: 0; padding: 0; } 
+
+#### 2. The Type Selector 
+
+The type selector matches all the elements specified in a list with a given value to determine the elements to which the CSS rules are to be applied. 
+
+Element_list{ property: value; } 
+
+Example: 
+
+h1, h2, p, table { font-family: sans-serif; } 
+
+#### 3. The Class Selector 
+
+The class selector allows you to apply CSS rules to the elements that carry a class attribute whose value matches the class attribute. The class selector is represented by a period `.` sign. 
+
+.class_value{ property: value; } 
+
+Example: 
+
+HTML code: 
+
+<h1 class='intro'>Bapatla Engineering College</h1> 
+
+<h2 class='intro'>Autonomous</h2> 
+
+CSS code: 
+
+.intro{ Font-family: sans-serif; } 
+
+### Applying CSS Rules to Specific Elements 
+
+To apply CSS rules to specific elements, you can use the element name followed by the class value. 
+
+Element_name . class_value{ property: value; } 
+
+Example: 
+
+h1.intro { Font-family: sans-serif; } 
+
+This is just a basic overview of CSS selectors. There are many more advanced selectors and techniques to explore in CSS. By understanding and mastering CSS selectors, you can create complex and dynamic web pages that are both visually appealing and user-friendly.
+CSS Selectors and Styles
+CSS selectors are patterns used to 'find' (or select) the HTML elements to apply style rules. There are nine different selectors, each with its own unique characteristics and uses. 
+
+1. The Universal Selector: 
+
+The universal selector selects all the elements that are present in an HTML document. It is represented by an asterisk (*) sign. This selector is useful for applying styles to every element on a webpage. 
+
+Syntax: * { property: value; } 
+
+Example: * { margin: 0; padding: 0; } 
+
+This example sets the margin and padding of all elements to 0. 
+
+2. The Type Selector: 
+
+The type selector matches all the elements specified in a list with a given value to determine the elements to which the CSS rules are to be applied. This selector is useful for applying styles to specific elements, such as paragraphs or headings. 
+
+Syntax: Element_list { property: value; } 
+
+Example: h1, h2, p { font-family: sans-serif; } 
+
+This example sets the font family of all h1, h2, and p elements to sans-serif. 
+
+3. The Class Selector: 
+
+The class selector allows you to apply CSS rules to the elements that carry a class attribute whose value matches the class attribute. This selector is useful for applying styles to specific elements that have a particular class. 
+
+Syntax: .class_value { property: value; } 
+
+Example: .intro { font-family: sans-serif; } 
+
+This example sets the font family of all elements with the class 'intro' to sans-serif. 
+
+Syntax: Element_name .class_value { property: value; } 
+
+Example: h1.intro { font-family: sans-serif; } 
+
+This example sets the font family of all h1 elements with the class 'intro' to sans-serif. 
+
+4. The ID Selector: 
+
+The ID selector is used to select an element with a specific ID. This selector is useful for applying styles to a unique element on a webpage. 
+
+Syntax: #id_value { property: value; } 
+
+Example: #list1 { border: 2px solid red; } 
+
+This example sets the border of the element with the ID 'list1' to 2px solid red. 
+
+5. The Child Selector: 
+
+The child selector is used to select an element that is a direct child of another element. This selector is useful for applying styles to elements that are nested inside other elements. 
+
+Syntax: parent > child { property: value; } 
+
+Example: ol > li { font-family: serif; } 
+
+This example sets the font family of all li elements that are direct children of an ol element to serif. 
+
+6. The Descendant Selector: 
+
+The descendant selector is used to select an element that is a descendant of another element. This selector is useful for applying styles to elements that are nested inside other elements, regardless of the level of nesting. 
+
+Syntax: ancestor descendant { property: value; } 
+
+Example: ol b { color: cyan; } 
+
+This example sets the color of all b elements that are descendants of an ol element to cyan. 
+
+7. The Adjacent Sibling Selector: 
+
+The adjacent sibling selector is used to select an element that is an adjacent sibling of another element. This selector is useful for applying styles to elements that are next to each other in the HTML document. 
+
+Syntax: element1 + element2 { property: value; } 
+
+Example: p + h1 { border: 5px dotted green; } 
+
+This example sets the border of all h1 elements that are adjacent siblings of a p element to 5px dotted green. 
+
+8. The Attribute Selector: 
+
+The attribute selector is used to select an element based on the presence of a specific attribute or attribute value. This selector is useful for applying styles to elements that have a particular attribute or attribute value. 
+
+Syntax: [attribute] { property: value; } 
+
+Example: [id] { border-radius: 25%; } 
+
+This example sets the border radius of all elements that have an ID attribute to 25%. 
+
+9. The Query Selector: 
+
+The query selector is not mentioned in the provided text. However, it is a selector that allows you to select elements based on a specific condition or query. This selector is useful for applying styles to elements that meet a specific condition. 
+
+Syntax: :query { property: value; } 
+
+Example: :hover { background-color: blue; } 
+
+This example sets the background color of all elements that are hovered over to blue. 
+
+In conclusion, CSS selectors are powerful tools that allow you to apply styles to specific elements or groups of elements on a webpage. By understanding the different types of selectors and how to use them, you can create complex and dynamic styles for your web pages.
+CSS Selectors
+CSS selectors are patterns used to select HTML elements to apply style rules. There are nine different types of selectors, each with its own unique characteristics and use cases. In this section, we will cover each of the nine selectors in detail, providing examples and explanations to help you understand how to use them effectively.
+
+1. The Universal Selector:
+
+The universal selector selects all elements present in an HTML document. It is represented by an asterisk (*) sign. The syntax for the universal selector is *{ property: value; }. This selector is useful for applying global styles to all elements on a page.
+
+Example:
+
+*{ margin: 0; padding: 0; }
+
+This example sets the margin and padding to 0 for all elements on the page.
+
+2. The Type Selector:
+
+The type selector matches all elements specified in a list with a given value to determine the elements to which the CSS rules are to be applied. The syntax for the type selector is Element_list{ property: value; }.
+
+Example:
+
+p{ font-size: 20px; background-color: violet; }
+
+This example sets the font size to 20px and the background color to violet for all paragraph elements on the page.
+
+3. The Class Selector:
+
+The class selector selects elements that have a specific class attribute. The syntax for the class selector is .class_name{ property: value; }.
+
+Example:
+
+.theory{ color: white; }
+
+This example sets the color to white for all elements with the class "theory".
+
+4. The ID Selector:
+
+The id selector allows you to apply CSS rules to the element that carries a unique id attribute. The syntax for the id selector is #id_value{ property: value; }.
+
+Example:
+
+#list1{ border: 2px solid red; }
+
+This example sets the border to 2px solid red for the element with the id "list1".
+
+5. The Child Selector:
+
+The child selector matches when an element is the immediate child of another element. The syntax for the child selector is Parent_Element > child_element{ property: value; }.
+
+Example:
+
+ol > li{ font-family: serif; }
+
+This example sets the font family to serif for all list items that are immediate children of an ordered list.
+
+6. The Descendant Selector:
+
+The descendant selector matches when an element is a descendant of another element. The syntax for the descendant selector is Ancestor_element descendant_element{ property: value; }.
+
+Example:
+
+ol b{ color: cyan; }
+
+This example sets the color to cyan for all bold elements that are descendants of an ordered list.
+
+7. The Adjacent Sibling Selector:
+
+The adjacent sibling selector matches when an element is the adjacent sibling of another element. The syntax for the adjacent sibling selector is Element1 + Element2{ property: value; }.
+
+Example:
+
+p + h1{ border: 5px dotted green; }
+
+This example sets the border to 5px dotted green for all heading 1 elements that are adjacent siblings of a paragraph element.
+
+8. The Attribute Selector:
+
+The attribute selector matches when an element has a specific attribute. The syntax for the attribute selector is [attribute_name]{ property: value; }.
+
+Example:
+
+[id]{ border-radius: 25%; }
+
+This example sets the border radius to 25% for all elements that have an id attribute.
+
+9. The Query Selector:
+
+The query selector is not covered in the provided text, but it is used to select elements based on their attributes, properties, or relationships. The syntax for the query selector is :query{ property: value; }.
+
+In conclusion, CSS selectors are powerful tools for selecting and styling HTML elements. By understanding the different types of selectors and how to use them, you can create complex and effective styles for your web pages.
+
+
+CSS Properties and Box Model
+CSS Properties and Box Model 
+
+ 1. CSS Properties 
+ 
+ CSS properties are used to customize the appearance of the text in a web page. They allow you to apply and modify the style already applied on the text. For example, color, direction, underline, etc. 
+
+ CSS Text Properties: 
+ 
+ 1. Color 
+ 
+ • Specifies the color of a text. Value can be color name, HEX value, GRB, etc. 
+ • Example: color: blue; 
+ 
+ 2. Direction 
+ 
+ • Specifies the text direction. Values are ltr | rtl | inherits. 
+ • Example: direction: rtl; 
+ 
+ 3. Letter-Spacing 
+ 
+ • Specifies the space between characters. 
+ • Example: letter-spacing: 2px; 
+ 
+ 4. Line-Break 
+ 
+ • Defines a set of line breaking rules to be used with text. 
+ • Example: line-break: strict; 
+ 
+ 5. Line-Height 
+ 
+ • Specifies the height of line. 
+ • Example: line-height: 1.5; 
+ 
+ 6. Text-Indent 
+ 
+ • Creates the paragraph look. It is applicable for only block type elements, such as headings, paragraph, and div. 
+ • Example: text-indent: 20px; 
+ 
+ 7. Text-Align 
+ 
+ • Set the horizontal alignment of the text. Values are left | right | center | justify. 
+ • Example: text-align: center; 
+ 
+ 8. Text-Align-Last 
+ 
+ • Specifies the alignment of the last line of a text. Possible values are left | right | center | justify. 
+ • Example: text-align-last: right; 
+
+ 2. CSS Box Model 
+ 
+ The CSS box model is a rectangular box that is used to display HTML elements. It consists of margins, borders, padding, and the actual content areas. 
+ 
+ The box model allows placing a border around the elements and also provides space between elements. 
+ 
+ 1. Content Area: 
+ 
+ • It displays the content of the HTML document, such as text, images, etc. 
+ 
+ 2. Padding Area: 
+ 
+ • Area around the content area. It clears an area around the content. The padding is transparent. 
+ 
+ 3. Border Area: 
+ 
+ • A border that goes around the padding and content. 
+ 
+ 4. Margin Area: 
+ 
+ • Clears an area outside the border. The margin is transparent. 
+ 
+ 3. CSS Border Properties 
+ 
+ 1. Border-Width 
+ 
+ • It specifies the style of the border width. 
+ • The style is specified in pixel. 
+ • Syntax: border-width: value; 
+ • Example: border-width: 2px; 
+ 
+ 2. Border-Color 
+ 
+ • It specifies the style of the border color. 
+ • The style is specified in pixel. 
+ • Syntax: border-color: value; 
+ • Example: border-color: black; 
+ 
+ 3. Border-Style 
+ 
+ • It specifies the style of the border. 
+ • The style is specified in pixel. 
+ • Syntax: border-style: value; 
+ • Example: border-style: solid; 
+ 
+ 4. Border-Top-Width 
+ 
+ • Sets the width of the top border of an element. 
+ 
+ 5. Border-Bottom-Width 
+ 
+ • Sets the width of the bottom border of an element. 
+ 
+ 6. Border-Left-Width 
+ 
+ • Sets the width of the left border of an element. 
+ 
+ 7. Border-Right-Width 
+ 
+ • Sets the width of the right border of an element. 
+ 
+ 8. Border-Top-Color 
+ 
+ • Sets the color of the top border of an element. 
+ 
+ 9. Border-Bottom-Color 
+ 
+ • Sets the color of the bottom border of an element. 
+ 
+ 10. Border-Left-Color 
+ 
+ • Sets the color of the left border of an element. 
+ 
+ 11. Border-Right-Color 
+ 
+ • Sets the color of the right border of an element. 
+ 
+ 4. CSS Padding Properties 
+ 
+ 1. Padding 
+ 
+ • It specifies the distance between the border of an element and content. 
+ • The value of padding cannot be negative. 
+ • Syntax: padding: value; 
+ • Example: padding: 20px; 
+ 
+ 2. Padding-Top 
+ 
+ • Sets the padding of the top of an element. 
+ 
+ 3. Padding-Bottom 
+ 
+ • Sets the padding of the bottom of an element. 
+ 
+ 4. Padding-Left 
+ 
+ • Sets the padding of the left of an element. 
+ 
+ 5. Padding-Right 
+ 
+ • Sets the padding of the right of an element. 
+ 
+ Exploring the Box Model: 
+ 
+ CSS converts the data of HTML elements in the form of rectangular boxes called the box model. The box model allows placing a border around the elements and also provides space between elements. It consists of margins, borders, padding, and the actual content areas. The image below illustrates the box model. 
+ 
+ Content Area: It displays the content of the HTML document, such as text, images, etc. 
+ 
+ Padding Area: Area around the content area. It clears an area around the content. The padding is transparent. 
+ 
+ Border Area: A border that goes around the padding and content. 
+ 
+ Margin Area: Clears an area outside the border. The margin is transparent. 
+
+Types of CSS and Inserting CSS in an HTML Document
+This topic discusses the different ways to link a CSS style sheet to an HTML document, which includes the inline style sheet, internal style sheet, and external style sheet.
+
+**The Inline Style Sheet**
+
+*   The inline style properties are written in a single line separated by semicolons.
+*   The properties are placed by using the style attribute inside HTML elements.
+*   Example:
+    
+    <p style=”background-color:red; border:1px solid black;”>
+    
+*   Advantages:
+    
+    •   Provides the highest precedence over internal and external style sheets.
+    •   Provides an easy and quick approach to add a style sheet to a web page.
+*   Disadvantages:
+    
+    •   Makes a document difficult to maintain and increase download time.
+    •   Does not allow styling pseudo-code.
+
+**The Internal Style Sheet**
+
+*   The internal style sheet is written within the HEAD element of the HTML document.
+*   The properties are placed by using the STYLE element inside the HEAD element.
+*   The STYLE element has both starting and ending tags.
+*   Attributes:
+    
+    •   media: media_query - Specifies what media/device the media resource is optimized for.
+    •   type: text/css - Specifies the media type of the <style> tag.
+*   Syntax:
+    
+    <head>
+    <STYLE type=”text/css”>
+    SELECTOR { CSS properties; }
+    </STYLE>
+    </head>
+*   Example:
+    
+    <head>
+    <STYLE type=”text/css”>
+    p { background-color:red; }
+    </STYLE>
+    </head>
+*   Advantages:
+    
+    •   Easy to maintain.
+    •   Allows you to change the styles of the same HTML file in which you are working.
+*   Disadvantages:
+    
+    •   Affects only the page in which they are applied.
+    •   Increases the page load time.
+
+**The External Style Sheet**
+
+(Note: The external style sheet is not discussed in the provided content, but it is mentioned as one of the ways to link a CSS style sheet to an HTML document.)
+
+**Designing a Web Page with CSS Internal Style Sheet**
+
+*   Example:
+    
+    <!DOCTYPE HTML>
+    <HEAD>
+    <TITLE>CSS Example</TITLE>
+    <STYLE>
+    *{margin: 0;}
+    body {
+        color:red;
+        background-color:lightgrey;
+        font-family: sans-serif;
+    }
+    h1{font-size:18pt}
+    p{font-size:12pt}
+    </STYLE>
+    </HEAD>
+    <BODY>
+    <H1>The font size of this heading is 18pt</H1>
+    <P>The font size of this paragraph is 12pt</P><BR/><BR/>
+    <H1 style=”color:#ff0000;background-color:#ffff00;font-family: Ariel;”>
+    The font size of this heading is 18pt
+    </H1>
+    <P style=”color:yellow; font-size:10pt”>The font size of this paragraph is 12pt</P>
+    </BODY>
+    </HTML>
+
+Overview of Cascading Style Sheets (CSS)
+Cascading Style Sheets (CSS) is a style sheet language used to control the look and feel of a website. It's a key tool in web design and is often used with HTML to change the style of web pages and user interfaces. CSS is used to define styles and layouts of web pages written in HTML and XHTML. CSS is a text file with a .css extension.
+
+CSS allows you to:
+
+- Create the separation of presentation and content, including layout, colors, and fonts.
+- Create a single version of a website that auto-adjusts to display properly on all devices except the oldest cellphones.
+- Convey things quickly while improving usability.
+
+CSS is a rule-based language that uses coding elements to describe how elements should be presented on screen, paper, in speech, or on other media.
+
+Types of CSS or Inserting CSS in an HTML Document:
+
+1. The Inline Style Sheet:
+
+- The inline style properties are written in a single line separated by semicolon.
+- The properties are placed by using the style attribute inside HTML elements.
+- Example: <p style="background-color:red; border:1px solid black;">.
+- Advantages:
+  - Provides highest precedence over internal and external style sheets.
+  - Provides an easy and quick approach to add style sheet in a web page.
+- Disadvantages:
+  - Makes a document difficult to maintain and increase download time.
+  - Does not allow to style pseudo-code.
+
+2. The Internal Style Sheet:
+
+- The internal style sheet is written inside the HTML document.
+- The internal style sheet is placed between the <head> and </head> tags.
+- Example: <head> <style> body {background-color: #f2f2f2;} </style> </head>.
+- Advantages:
+  - Provides a quick and easy approach to add style sheet in a web page.
+  - Allows to style pseudo-code.
+- Disadvantages:
+  - Makes a document difficult to maintain.
+  - Does not provide highest precedence over external style sheets.
+
+3. The External Style Sheet:
+
+- The external style sheet is written outside of the HTML document.
+- The external style sheet is saved into a text file with .css extension.
+- The properties of external style sheet were linked to the HTML document in two ways:
+  - Linking: LINK element is used to link the external style sheet to HTML document.
+  - Example: <LINK type="text/css" href="styles.css" rel="stylesheet">.
+  - Attributes are:
+    - type: Specifies the MIME type of the linked document.
+    - href: Specifies the location of the linked document.
+    - rel: Specifies the relationship between the current document and the linked document.
+
+The external style sheet has several advantages, including:
+
+- Provides a quick and easy approach to add style sheet in a web page.
+- Allows to style pseudo-code.
+- Provides highest precedence over internal style sheets.
+- Makes a document easy to maintain.
+
+However, the external style sheet also has some disadvantages, including:
+
+- Increases download time.
+- Does not allow to style pseudo-code if the pseudo-code is not defined in the external style sheet.

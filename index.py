@@ -1,5 +1,6 @@
 import os
 import asyncio
+import streamlit as st
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from langchain_cohere import CohereEmbeddings
@@ -9,9 +10,9 @@ from langchain_mongodb.vectorstores import MongoDBAtlasVectorSearch
 
 from syllabus_extractor import syllabus_llm
 
-# Load the environment variables
+# # Load the environment variables
 load_dotenv()
-os.environ.get('COHERE_API_KEY')
+# os.environ.get('COHERE_API_KEY')
 
 # Initialize the MongoDB client
 client = MongoClient(os.environ.get("MONGODB_ATLAS_CLUSTER_URI"))
@@ -20,25 +21,25 @@ COLLECTION_NAME = "syllabusser_vectorstores"
 ATLAS_VECTOR_SEARCH_INDEX_NAME = "syllabusser-index-vectorstores"
 MONGODB_COLLECTION = client[DB_NAME][COLLECTION_NAME]
 
-# Initialize the document loader
-loader = PyPDFLoader('./data/CNN.pdf')
+# # Initialize the document loader
+# loader = PyPDFLoader('./data/CNN.pdf')
 
-async def load_pages(loader):
-    pages = []
-    text = ""
-    async for page in loader.alazy_load():
-        pages.append(page)
-    return pages
+# async def load_pages(loader):
+#     pages = []
+#     text = ""
+#     async for page in loader.alazy_load():
+#         pages.append(page)
+#     return pages
 
-pages = asyncio.run(load_pages(loader))
+# pages = asyncio.run(load_pages(loader))
 
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1024,
-    chunk_overlap= 100,
-)
-documents = text_splitter.split_documents(pages)
+# text_splitter = RecursiveCharacterTextSplitter(
+#     chunk_size=1024,
+#     chunk_overlap= 100,
+# )
+# documents = text_splitter.split_documents(pages)
 
-# embedding model, here we used CohereEmbeddings
+# # embedding model, here we used CohereEmbeddings
 embeddings = CohereEmbeddings(
     model="embed-english-v3.0",
 )
@@ -53,25 +54,48 @@ vector_store = MongoDBAtlasVectorSearch(
 
 # add documents to the vector store and create the vector search index
 
-def add_documents_to_vector_store(documents): 
-    """
-        This uses vector_store (which is an instance of MongoDBAtlasVectorSearch) to add documents to the vector store and create the vector search index (this is the index that is used to search for similar documents).
-    """
-    vector_store.add_documents(documents)
-    # this created the vector search index, without this you need to manually create the index using mongodb atlas UI, and this below line isn't mentioned in the documentation, try checking in api_reference instead of guides
-    vector_store.create_vector_search_index(
-    dimensions=1024
-    )
+# def add_documents_to_vector_store(documents): 
+#     """
+#         This uses vector_store (which is an instance of MongoDBAtlasVectorSearch) to add documents to the vector store and create the vector search index (this is the index that is used to search for similar documents).
+#     """
+#     vector_store.add_documents(documents)
+#     # this created the vector search index, without this you need to manually create the index using mongodb atlas UI, and this below line isn't mentioned in the documentation, try checking in api_reference instead of guides
+#     vector_store.create_vector_search_index(
+#     dimensions=1024
+#     )
 
-add_documents_to_vector_store(documents)
-results = vector_store.similarity_search(
-    "what does pooling layer in CNN do?", k=2
-)
-if len(results) == 0 :
-    print("No results found")
-else :
-    for res in results:
-        print(f"* {res.page_content} [{res.metadata}]")
+from text_embedder import text_embedder
+uploaded_file = st.file_uploader("Choose a PDF file", type="pdf")
+
+# add_documents_to_vector_store(documents)
+if uploaded_file is not None:
+    # Save the uploaded file to a temporary location
+    temp_file_path = os.path.join("data", uploaded_file.name)
+    with open(temp_file_path, "wb") as f:
+        f.write(uploaded_file.getbuffer())
+
+    # Use the temporary file path with PyPDFLoader
+    embedding_button_resp = st.button("Add embeddings")
+
+    if embedding_button_resp:
+        status = text_embedder(temp_file_path)
+    # use st to take input from user and store it in a variable
+    user_input = st.text_input("Enter your query here:")
+    if user_input :
+        st.write(user_input)
+        if True :
+            results = vector_store.similarity_search(
+                user_input, k=2
+            )
+            if len(results) == 0:
+                print("No results found")
+                st.write("No results found")
+            else:
+                for res in results:
+                    print(f"* {res.page_content} [{res.metadata}]")
+                    st.write(f"* {res.page_content} [{res.metadata}]")
+
+
 
 # result  = syllabus_llm("""UNIT-I:
 # Formal Languages and Regular Expressions: Definition of Languages, Finite Automata
