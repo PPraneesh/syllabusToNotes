@@ -61,7 +61,7 @@ if user_input :
         compressor = CohereRerank(model="rerank-english-v3.0")
         compression_retriever = ContextualCompressionRetriever(
                 base_compressor=compressor, base_retriever=retriever)
-        results = compression_retriever.invoke(user_input)
+        results = retriever.invoke(user_input)
         if len(results) == 0:
             print("No results found")
             st.write("No results found")
