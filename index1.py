@@ -93,7 +93,7 @@ if user_syllabus:
                 notes.append(notes_maker(results))
     st.write(notes)
     # Save notes to a text file
-    with open("notes.txt", "w",encoding="utf-8") as notes_file:
+    with open("notes.md", "w",encoding="utf-8") as notes_file:
         for note in notes:
             notes_file.write(note.title + "\n")
             notes_file.write(note.content + "\n")

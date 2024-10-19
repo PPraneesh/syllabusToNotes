@@ -13,38 +13,57 @@ llm = ChatGroq(model="llama-3.1-70b-versatile")
 class Notes(BaseModel):
     """A class to represent detailed notes"""
     title: str = Field(description="The title of the topic")
-    content: str = Field(description="The detailed content of the topic")
+    content: str = Field(description="The detailed content of the topic in markdown format")
 
 def notes_maker(extracted_text_topic_wise: str):
     """
-    This function will invoke the model to process and return structured, detailed notes.
+    This function will invoke the model to process and return structured, detailed notes in markdown format.
     """
     structured_llm = llm.with_structured_output(Notes)
     
-    # Updated prompt for more detailed and extensive notes
-    prompt = f"""Create comprehensive and detailed structured notes for exam preparation based on the following content. For each distinct topic:
+    prompt = f"""Create comprehensive and detailed structured notes in markdown format for exam preparation based on the following content. Format the notes following these specific markdown rules:
 
-    1. Provide a clear and specific title that accurately represents the topic.
-    2. Summarize the key points in the content, ensuring that EVERY point from the original text is included.
-    3. Elaborate extensively on each point, providing thorough explanations, examples, and contextual information where applicable.
-    4. Include any relevant sub-points, ensuring a hierarchical structure in the notes if necessary.
-    5. If there are any concepts that require further clarification, provide that additional information.
-    6. Ensure that the notes are comprehensive enough that a student could use them as a primary study resource.
+    Formatting Requirements:
+    1. Main topic title should be an H1 heading (#)
+    2. Each major section should be an H2 heading (##)
+    3. Use bullet points (-) for main points
+    4. Use bold (**text**) for subtopics and key terms
+    5. Add horizontal rules (---) after each major section
+    6. Use proper indentation for nested points (2 spaces)
+    7. Use italics (*text*) for definitions or important phrases
+    8. Use code blocks (```) for any technical content or examples
+    9. Create clear hierarchical structure with proper spacing
+    10. Add a table of contents at the beginning if multiple sections exist
 
-    Rules for creating the notes:
-    - Be thorough and expansive in your explanations. Aim for depth and breadth in covering each topic.
-    - Do not summarize or condense information. Instead, expand on each point to provide a full understanding.
-    - Use clear, concise language, but don't sacrifice detail for brevity.
-    - Include all information from the original text, even if it seems redundant.
-    - If the original text is brief, expand on the topics using general knowledge about the subject.
-    - Format the notes in a way that's easy to read and study from, using bullet points, numbering, or paragraphs as appropriate.
+    Content Requirements:
+    1. Provide clear and specific section headings
+    2. Include ALL information from the original text
+    3. Expand on each point with thorough explanations
+    4. Add relevant examples and contextual information
+    5. Include any necessary clarifications
+    6. Make the notes comprehensive enough for self-study
+
+    Example Format:
+    # Main Topic Title
+
+    ## First Major Section
+    - **Subtopic 1**
+      - Detailed explanation
+      - Key points
+    - **Subtopic 2**
+      - Further details
+      - Important concepts
+    
+    ---
+
+    ## Second Major Section
+    [continue format...]
 
     Here's the content to structure into detailed notes:
     {extracted_text_topic_wise}
 
-    Please format the output as a Notes object with 'title' and 'content' fields, where the content is extensive and covers all points in great detail."""
+    Please format the output as a Notes object with 'title' and 'content' fields, where the content follows the markdown formatting rules specified above and includes comprehensive information."""
     
-    # Invoke the model with structured output
     response = structured_llm.invoke(prompt)
     
     return response
