@@ -10,9 +10,11 @@ from langchain_community.embeddings import HuggingFaceBgeEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_mongodb.vectorstores import MongoDBAtlasVectorSearch
-from syllabus_extractor import syllabus_llm
-from text_embedder import text_embedder
-from notes_outputter import notes_maker
+from utils.syllabus_extractor import syllabus_llm
+from utils.text_embedder import text_embedder
+from utils.notes_outputter import notes_maker
+
+import markdown 
 
 load_dotenv()
 
@@ -40,6 +42,7 @@ vector_store = FAISS(
     index_to_docstore_id={},
 )
 # vector_store =FAISS.load_local("vector_store",embeddings,allow_dangerous_deserialization=True)
+
 
 uploaded_files = st.file_uploader("Choose PDF files", type="pdf", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
@@ -97,6 +100,10 @@ if user_syllabus:
         for note in notes:
             notes_file.write(note.title + "\n")
             notes_file.write(note.content + "\n")
-    st.success("Notes have been saved to notes.txt")
+    html = markdown.markdown(open("notes.md",encoding="utf-8").read())
+    with open("notes.html","w",encoding="utf-8") as notes_html:
+        notes_html.write(html)
+    st.markdown(html, unsafe_allow_html=True)
+
     # pass it to strealit to download the file
     st.markdown("### [Download the notes](notes.txt)")

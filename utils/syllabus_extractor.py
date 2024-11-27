@@ -27,10 +27,8 @@ def syllabus_llm(syllabus_text: str):
 
     # Updated prompt for the LLM
     prompt = f"""Analyze and structure the following syllabus content into a clear, hierarchical format:
-
 1. Identify the main subject areas or units. These should be broad categories that encompass multiple related topics.
 2. Within each unit, list specific topics that are part of that unit.
-
 Rules:
 - Each unit should represent a distinct area of study or a major theme.
 - Topics should be specific subjects or concepts within the unit.
@@ -39,10 +37,8 @@ Rules:
 - Break down broad topics into more specific, searchable phrases. For example, instead of just "CSS", use "Introduction to CSS", "CSS Ruleset Structure", "Inline CSS Techniques", etc.
 - Make sure each topic title is descriptive and self-contained, avoiding vague terms like "introduction" or "basics" without context.
 - Aim for topic titles that are 2-5 words long, balancing specificity with conciseness.
-
 Here's the syllabus content to structure:
 {syllabus_text}
-
 Please format the output as a Syllabus with Units and Topics, adhering to the structure defined by the Pydantic models. Ensure that the topics are detailed enough to be easily retrieved from a vector database using similarity search algorithms."""
 
     # Invoke the model with structured output
