@@ -7,7 +7,7 @@ from langchain_groq import ChatGroq
 # Load environment variables
 load_dotenv()
 os.environ.get('GROQ_API_KEY')
-llm = ChatGroq(model="llama-3.1-70b-versatile")
+llm = ChatGroq(model="llama-3.3-70b-versatile")
 
 class Unit(BaseModel):
     """Represents a single unit in the syllabus, containing multiple topics."""
