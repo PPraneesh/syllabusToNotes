@@ -1,27 +1,35 @@
 import os
-import asyncio
 import streamlit as st
 from dotenv import load_dotenv
-from langchain.retrievers.contextual_compression import ContextualCompressionRetriever
-from langchain_cohere import CohereEmbeddings, CohereRerank
 from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
+import faiss
+import shutil
+import markdown
+import base64
+from langchain_community.docstore.in_memory import InMemoryDocstore
+from langchain_community.vectorstores import FAISS
+
+# Import utility modules
 from utils.syllabus_extractor import syllabus_llm
 from utils.text_embedder import improved_text_embedder
 from utils.notes_outputter import improved_notes_maker
-import markdown
-import faiss
-from langchain_community.docstore.in_memory import InMemoryDocstore
-from langchain_community.vectorstores import FAISS
-from typing import List, Dict
-import re
+from utils.manim_generator import ManimGenerator
+from utils.notes_handler import (
+    clean_syllabus,
+    calculate_similarity,
+    enhanced_retriever,
+    get_video_embed_html,
+    consolidate_unit_notes_with_animations,
+    display_notes_with_html,
+    create_final_html
+)
 
+# Load environment variables
 load_dotenv()
 
 # Page configuration
 st.set_page_config(
-    page_title="Smart Study Notes Generator",
+    page_title="Smart Study Notes Generator with Animations",
     page_icon="📝",
     layout="wide"
 )
@@ -56,103 +64,25 @@ def initialize_vector_store():
 
 vector_store = initialize_vector_store()
 
-# Function to clean and process syllabus text
-def clean_syllabus(syllabus_text):
-    # Remove excessive new lines and spaces
-    cleaned = re.sub(r'\n{3,}', '\n\n', syllabus_text)
-    cleaned = re.sub(r' {2,}', ' ', cleaned)
-    # Ensure proper markdown formatting
-    cleaned = re.sub(r'\*\*UNIT-([IVX]+):\*\*', r'## UNIT-\1:', cleaned)
-    return cleaned
-
-# Function to calculate text similarity (simple implementation)
-def calculate_similarity(text1, text2):
-    # Convert to sets of words for a basic Jaccard similarity
-    words1 = set(text1.lower().split())
-    words2 = set(text2.lower().split())
+# Generate Manim animation for a topic
+def generate_topic_animation(topic, concepts=None, manim_gen=None):
+    if not manim_gen:
+        manim_gen = ManimGenerator()
     
-    # Calculate Jaccard similarity
-    intersection = len(words1.intersection(words2))
-    union = len(words1.union(words2))
+    if not manim_gen.ensure_environment():
+        return False, "Manim not installed properly"
     
-    return intersection / union if union > 0 else 0
-
-# Function to enhance retrieval with deduplication and better ranking
-def enhanced_retriever(topic, previous_chunks=None, k=20):
-    # Convert previous chunks to text if provided
-    previous_texts = [chunk.page_content for chunk in previous_chunks] if previous_chunks else []
-    
-    # Initial retrieval with more chunks than needed
-    retriever = vector_store.as_retriever(search_kwargs={"k": k + 10})
-    
-    # Use Cohere's reranker for better relevance
-    # compressor = CohereRerank(
-    #     model="rerank-english-v3.0",
-    #     top_n=k,
-    # )
-    
-    # compression_retriever = ContextualCompressionRetriever(
-    #     base_compressor=compressor,
-    #     base_retriever=retriever
-    # )
-    
-    # Get ranked results
-    results = retriever.invoke(topic)
-    
-    # Filter out similar chunks to avoid repetition
-    if previous_texts:
-        filtered_results = []
-        for res in results:
-            is_duplicate = False
-            for prev_text in previous_texts:
-                if calculate_similarity(res.page_content, prev_text) > 0.7:
-                    is_duplicate = True
-                    break
-            if not is_duplicate:
-                filtered_results.append(res)
-        
-        # If we filtered too many, add some back based on ranking
-        if len(filtered_results) < k // 2:
-            # Add back some high-ranked chunks even if slightly similar
-            for res in results:
-                if res not in filtered_results and len(filtered_results) < k // 2:
-                    filtered_results.append(res)
-                    
-        return filtered_results
-    
-    return results
-
-# Function to consolidate notes across a unit
-def consolidate_unit_notes(unit_title, topic_notes_list):
     try:
-        prompt = f"""You are an expert educational content creator. Consolidate the following topic notes into a cohesive unit of study.
-
-Unit Title: {unit_title}
-
-Topic Notes:
-{topic_notes_list}
-
-Requirements:
-1. Create a comprehensive unit that flows naturally between topics
-2. Eliminate any redundant or repeated information
-3. Ensure all key concepts are covered thoroughly
-4. Maintain consistent formatting and style
-5. Create natural transitions between topics
-6. Ensure comprehensive coverage of the entire unit
-7. Use markdown formatting for the final output
-
-Your output should be properly formatted markdown that presents this unit in a clear, cohesive manner."""
-
-        response = consolidation_llm.invoke(prompt)
-        return response.content
+        success, result = manim_gen.create_animation(topic, concepts)
+        return success, result
     except Exception as e:
-        return f"# {unit_title}\n\n*Error during consolidation: {str(e)}*\n\n" + "\n\n".join(topic_notes_list)
+        return False, f"Error generating animation: {str(e)}"
 
-# Streamlit UI
-st.title("📝 Smart Study Notes Generator")
-st.write("Upload your study materials and provide your syllabus to generate comprehensive notes!")
+# Main application UI
+st.title("📝 Smart Study Notes Generator with Animations")
+st.write("Upload your study materials and provide your syllabus to generate comprehensive notes with animations!")
 
-
+# File upload section
 st.header("📚 Upload Learning Materials")
 uploaded_files = st.file_uploader("Choose PDF files", type="pdf", accept_multiple_files=True)
 
@@ -186,17 +116,25 @@ if process_files and uploaded_files:
     vector_store.save_local("vector_store")
     processing_status.success("All documents processed successfully!")
 
-
+# Notes generation section
 st.header("📋 Generate Notes from Syllabus")
-st.write("Paste your syllabus below to generate comprehensive study notes")
+st.write("Paste your syllabus below to generate comprehensive study notes with animations")
 
 user_syllabus = st.text_area("Enter your syllabus here:", height=200)
-generate_button = st.button("Generate Study Notes")
+generate_button = st.button("Generate Study Notes with Animations")
+
+# Initialize the Manim generator
+manim_gen = ManimGenerator()
+
+# Check Manim installation
+if generate_button:
+    if not manim_gen.ensure_environment():
+        st.error("Manim is not installed properly. Please install it to generate animations.")
 
 # Generation status placeholder
 generation_status = st.empty()
 
-if generate_button and user_syllabus:
+if generate_button and user_syllabus and manim_gen.ensure_environment():
     generation_status.info("Processing syllabus...")
     
     # Clean the syllabus
@@ -205,9 +143,19 @@ if generate_button and user_syllabus:
     # Extract structured syllabus
     result = syllabus_llm(cleaned_syllabus)
     
+    # Store syllabus in session state
+    st.session_state.syllabus = result
+    
     # Track all notes and chunks for deduplication
     all_notes = []
     all_chunks_used = []
+    
+    # Store topic notes
+    st.session_state.topic_notes = {}
+    
+    # Create directory for notes assets
+    os.makedirs("notes_assets", exist_ok=True)
+    os.makedirs(os.path.join("notes_assets", "videos"), exist_ok=True)
     
     # Create progress metrics
     units_total = len(result.units)
@@ -222,6 +170,7 @@ if generate_button and user_syllabus:
     for unit_idx, unit in enumerate(result.units):
         generation_status.info(f"Processing Unit {unit_idx+1}/{units_total}: {unit.title}")
         unit_notes = []
+        unit_animations = {}
         
         for topic_idx, topic in enumerate(unit.topics):
             progress_text.write(f"Generating notes for: {topic}")
@@ -230,7 +179,7 @@ if generate_button and user_syllabus:
             retrieved_chunks = enhanced_retriever(
                 topic, 
                 previous_chunks=all_chunks_used,
-                k=15  # Adjust based on topic complexity
+                vector_store=vector_store
             )
             
             if not retrieved_chunks:
@@ -247,6 +196,21 @@ if generate_button and user_syllabus:
             previous_notes_content = "\n".join([note for note in unit_notes])
             topic_notes = improved_notes_maker(topic, retrieved_texts, previous_notes_content)
             
+            # Store topic notes
+            st.session_state.topic_notes[topic] = topic_notes
+            
+            # Generate animation for this topic using extracted concepts
+            progress_text.write(f"Generating animation for: {topic}")
+            if hasattr(topic_notes, 'concepts') and topic_notes.concepts:
+                success, result_animation = generate_topic_animation(topic, topic_notes.concepts, manim_gen)
+            else:
+                success, result_animation = generate_topic_animation(topic, None, manim_gen)
+            
+            if success:
+                # Create HTML embed for the animation and store it
+                video_html = get_video_embed_html(result_animation)
+                unit_animations[topic] = video_html
+            
             # Add to unit notes
             unit_notes.append(f"## {topic_notes.title}\n\n{topic_notes.content}")
             
@@ -255,8 +219,13 @@ if generate_button and user_syllabus:
             progress_percentage = topics_processed / topics_total
             progress_bar.progress(progress_percentage)
         
-        # Consolidate unit notes for better flow
-        consolidated_unit = consolidate_unit_notes(unit.title, unit_notes)
+        # Consolidate unit notes with animations for better flow
+        consolidated_unit = consolidate_unit_notes_with_animations(
+            unit.title, 
+            unit_notes, 
+            unit_animations, 
+            consolidation_llm
+        )
         all_notes.append(f"# {unit.title}\n\n{consolidated_unit}")
     
     generation_status.info("Creating final consolidated notes...")
@@ -273,10 +242,10 @@ Requirements:
 3. Ensure proper hierarchical structure with appropriate headings
 4. Add a table of contents at the beginning
 5. Eliminate any remaining redundancies
-6. Ensure all content is in proper markdown format
+6. DO NOT MODIFY OR REMOVE ANY HTML CONTENT (especially video tags)
 7. Add section introductions where helpful
 
-Your output should be well-formatted markdown that forms a complete study guide."""
+Your output should be well-formatted markdown that forms a complete study guide with embedded animations."""
 
     try:
         final_notes = consolidation_llm.invoke(final_prompt).content
@@ -284,55 +253,36 @@ Your output should be well-formatted markdown that forms a complete study guide.
         st.error(f"Error during final consolidation: {str(e)}")
         final_notes = "\n\n".join(all_notes)
     
-    # Save notes to files
+    # Save the markdown notes
     with open("notes.md", "w", encoding="utf-8") as notes_file:
         notes_file.write(final_notes)
     
-    # Convert to HTML
-    html = markdown.markdown(final_notes, extensions=['tables', 'toc'])
-    with open("notes.html", "w", encoding="utf-8") as notes_html:
-        notes_html.write(f"""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Study Notes</title>
-            <style>
-                body {{ font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }}
-                h1 {{ color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }}
-                h2 {{ color: #3498db; margin-top: 30px; }}
-                h3 {{ color: #2980b9; }}
-                code {{ background-color: #f8f8f8; padding: 2px 5px; border-radius: 3px; }}
-                pre {{ background-color: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; }}
-                blockquote {{ border-left: 4px solid #ccc; padding-left: 15px; color: #666; }}
-                img {{ max-width: 100%; }}
-                table {{ border-collapse: collapse; width: 100%; }}
-                th, td {{ border: 1px solid #ddd; padding: 8px; }}
-                tr:nth-child(even) {{ background-color: #f2f2f2; }}
-            </style>
-        </head>
-        <body>
-            {html}
-        </body>
-        </html>
-        """)
+    # Convert and prepare for display in Streamlit
+    html_content = create_final_html(final_notes)
     
     # Complete status and show results
-    generation_status.success("Notes generation complete!")
+    generation_status.success("Notes generation with animations complete!")
     progress_text.empty()
     progress_bar.empty()
     
-    # Display the generated notes
-    st.subheader("Generated Study Notes")
-    st.markdown(html, unsafe_allow_html=True)
+    # Display the generated notes with videos in Streamlit
+    st.subheader("Generated Study Notes with Animations")
+    display_notes_with_html(final_notes, st)
     
-    # Provide download options
-    col_md, col_html = st.columns(2)
-    with col_md:
-        st.download_button("📥 Download Markdown", final_notes, "study_notes.md")
-    with col_html:
-        with open("notes.html", "r", encoding="utf-8") as f:
-            html_content = f.read()
-            st.download_button("📥 Download HTML", html_content, "study_notes.html")
+    # Provide download button for HTML
+    with open("notes.html", "w", encoding="utf-8") as html_file:
+        html_file.write(html_content)
+    
+    with open("notes.html", "r", encoding="utf-8") as f:
+        html_download = f.read()
+        st.download_button("📥 Download Complete HTML with Animations", html_download, "study_notes.html")
+    
+    # Create a zip file of the notes_assets directory for download
+    if os.path.exists("notes_assets"):
+        # Create a zip file of the assets
+        shutil.make_archive("notes_assets_zip", 'zip', "notes_assets")
+        with open("notes_assets_zip.zip", "rb") as f:
+            st.download_button("📥 Download Assets (Required for HTML)", f.read(), "notes_assets.zip")
 
 # Sidebar options
 with st.sidebar:
@@ -358,14 +308,36 @@ with st.sidebar:
     similarity_threshold = st.slider("Similarity Threshold", min_value=0.5, max_value=0.9, value=0.7, step=0.05,
                                    help="Threshold for detecting similar content (higher = more strict)")
     
-    st.info("Note: Changes to advanced settings will apply to newly processed documents.")
+    # Manim animation options
+    st.subheader("🎬 Animation Settings")
+    
+    # Check if Manim is installed
+    if not manim_gen.ensure_environment():
+        st.error("Manim not installed. Animations will be skipped.")
+        st.info("""
+        To install Manim:
+        
+        For macOS:
+        ```
+        brew install py3cairo ffmpeg pango scipy
+        pip install manim
+        ```
+        
+        For other systems, see: https://docs.manim.community/en/stable/installation.html
+        """)
+    else:
+        st.success("Manim installed successfully! Animations will be included.")
     
     # Help section
     st.subheader("📖 How to Use")
     st.markdown("""
-    1. **Upload PDFs** in the left panel
+    1. **Upload PDFs** with your learning materials
     2. Click **Process Uploaded Files**
-    3. Paste your **syllabus** in the right panel
-    4. Click **Generate Study Notes**
-    5. Download the generated notes as **Markdown** or **HTML**
+    3. Paste your **syllabus** in the text area
+    4. Click **Generate Study Notes with Animations**
+    5. The app will automatically:
+       - Generate comprehensive notes
+       - Create animations for each topic
+       - Embed animations within the notes
+    6. Download the complete HTML notes with videos
     """)

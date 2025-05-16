@@ -1,151 +1,752 @@
 
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <title>Study Notes</title>
-                <style>
-                    body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
-                    h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
-                    h2 { color: #3498db; margin-top: 30px; }
-                    h3 { color: #2980b9; }
-                    code { background-color: #f8f8f8; padding: 2px 5px; border-radius: 3px; }
-                    pre { background-color: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; }
-                    blockquote { border-left: 4px solid #ccc; padding-left: 15px; color: #666; }
-                    img { max-width: 100%; }
-                    table { border-collapse: collapse; width: 100%; }
-                    th, td { border: 1px solid #ddd; padding: 8px; }
-                    tr:nth-child(even) { background-color: #f2f2f2; }
-                </style>
-            </head>
-            <body>
-                <p>```markdown</p>
-<h1 id="study-guide-perception">Study Guide: Perception</h1>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Study Notes with Animations</title>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 20px; }
+            h1 { color: #2c3e50; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+            h2 { color: #3498db; margin-top: 30px; }
+            h3 { color: #2980b9; }
+            code { background-color: #f8f8f8; padding: 2px 5px; border-radius: 3px; }
+            pre { background-color: #f8f8f8; padding: 15px; border-radius: 5px; overflow-x: auto; }
+            blockquote { border-left: 4px solid #ccc; padding-left: 15px; color: #666; }
+            img { max-width: 100%; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            tr:nth-child(even) { background-color: #f2f2f2; }
+            .video-container { margin: 20px 0; }
+            video { display: block; max-width: 100%; }
+            a { color: #3498db; text-decoration: none; }
+            a:hover { text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <p>```markdown</p>
+<h1 id="jsp-fundamentals-a-comprehensive-study-guide">JSP Fundamentals: A Comprehensive Study Guide</h1>
 <h2 id="table-of-contents">Table of Contents</h2>
 <ol>
-<li><a href="#introduction-to-perception">Introduction to Perception</a></li>
-<li><a href="#factors-influencing-perception">Factors Influencing Perception</a><ul>
-<li><a href="#the-situation">The Situation</a></li>
-<li><a href="#the-target">The Target</a></li>
-<li><a href="#the-perceiver">The Perceiver</a></li>
+<li><a href="#jsp-fundamentals-introduction">JSP Fundamentals: Introduction</a><ul>
+<li><a href="#what-is-jsp">What is JSP?</a></li>
+<li><a href="#advantages-of-jsp-over-servlets">Advantages of JSP over Servlets</a></li>
+<li><a href="#how-to-run-a-simple-jsp-page">How to Run a Simple JSP Page</a></li>
+<li><a href="#sample-jsp-program">Sample JSP Program</a></li>
+<li><a href="#the-jsp-api">The JSP API</a></li>
+<li><a href="#directory-structure-of-jsp">Directory Structure of JSP</a></li>
+<li><a href="#javabean-integration">JavaBean Integration</a></li>
+<li><a href="#the-jsppage-interface">The <code>JspPage</code> Interface</a></li>
+<li><a href="#jsp-directives">JSP Directives</a></li>
+<li><a href="#lifecycle-of-a-jsp-page">Lifecycle of a JSP Page</a></li>
+<li><a href="#mvc-in-jsp">MVC in JSP</a></li>
+<li><a href="#jsp-scripting-elements">JSP Scripting Elements</a></li>
 </ul>
 </li>
-<li><a href="#perceptual-selectivity">Perceptual Selectivity</a><ul>
-<li><a href="#external-attention-factors">External Attention Factors</a></li>
-<li><a href="#internal-set-factors">Internal Set Factors</a></li>
+<li><a href="#jsp-page-anatomy">JSP Page Anatomy</a><ul>
+<li><a href="#jsp-directives-detailed">JSP Directives (Detailed)</a></li>
+<li><a href="#jsp-action-tags-detailed">JSP Action Tags (Detailed)</a></li>
+<li><a href="#jsp-declaration-tag">JSP Declaration Tag</a></li>
+<li><a href="#the-httpjsppage-interface">The <code>HttpJspPage</code> Interface</a></li>
+<li><a href="#jsp-implicit-objects">JSP Implicit Objects</a></li>
 </ul>
 </li>
-<li><a href="#perceptual-organization">Perceptual Organization</a><ul>
-<li><a href="#gestalt-principles-of-perceptual-organization">Gestalt Principles of Perceptual Organization</a><ul>
-<li><a href="#law-of-similarity">Law of Similarity</a></li>
-<li><a href="#law-of-prägnanz">Law of Prägnanz</a></li>
-<li><a href="#law-of-proximity">Law of Proximity</a></li>
-<li><a href="#law-of-continuity">Law of Continuity</a></li>
-<li><a href="#law-of-closure">Law of Closure</a></li>
-<li><a href="#law-of-common-region">Law of Common Region</a></li>
+<li><a href="#jsp-processing-steps">JSP Processing Steps</a><ul>
+<li><a href="#jsp-expression-tag-revisited">JSP Expression Tag (Revisited)</a></li>
+<li><a href="#the-lifecycle-of-a-jsp-page-detailed">The Lifecycle of a JSP Page (Detailed)</a></li>
+<li><a href="#anatomycomponents-of-jsp-summary">Anatomy/Components of JSP (Summary)</a></li>
+<li><a href="#directory-structure-of-jsp-revisited">Directory Structure of JSP (Revisited)</a></li>
 </ul>
 </li>
+<li><a href="#jsp-syntax">JSP Syntax</a><ul>
+<li><a href="#anatomy-of-a-jsp-page">Anatomy of a JSP Page</a></li>
+<li><a href="#jsp-scripting-elements-1">JSP Scripting Elements</a></li>
+<li><a href="#jsp-scriptlet-tag">JSP Scriptlet Tag</a></li>
+<li><a href="#jsp-expression-tag">JSP Expression Tag</a></li>
+<li><a href="#jsp-declaration-tag-1">JSP Declaration Tag</a></li>
+<li><a href="#jsp-directives-1">JSP Directives</a></li>
+<li><a href="#jsp-page-directive">JSP Page Directive</a></li>
+<li><a href="#jsp-include-directive">JSP Include Directive</a></li>
+<li><a href="#jsp-taglib-directive">JSP Taglib Directive</a></li>
+<li><a href="#jsp-action-tags">JSP Action Tags</a></li>
+<li><a href="#jspforward-action"><code>&lt;jsp:forward&gt;</code> Action</a></li>
+<li><a href="#jsp-bean-components">JSP Bean Components</a></li>
+<li><a href="#sample-jsp-program-1">Sample JSP Program</a></li>
 </ul>
 </li>
-<li><a href="#social-and-family-factors-influencing-perception">Social and Family Factors Influencing Perception</a><ul>
-<li><a href="#social-factors">Social Factors</a></li>
-<li><a href="#family-factors">Family Factors</a></li>
+<li><a href="#jsp-implicit-objects-1">JSP Implicit Objects</a><ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#understanding-implicit-influences">Understanding Implicit Influences</a></li>
+<li><a href="#perception-and-implicit-objects">Perception and Implicit Objects</a></li>
+<li><a href="#transactional-analysis-ta-and-implicit-relational-objects">Transactional Analysis (TA) and Implicit Relational Objects</a></li>
+<li><a href="#examples">Examples</a></li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#jsp-implicit-objects-streamlining-web-development">JSP Implicit Objects: Streamlining Web Development</a></li>
+<li><a href="#what-are-implicit-objects-in-jsp">What are Implicit Objects in JSP?</a></li>
+<li><a href="#using-implicit-objects-practical-examples">Using Implicit Objects: Practical Examples</a></li>
+<li><a href="#javabeans-in-jsp-enhancing-structure-and-reusability">JavaBeans in JSP: Enhancing Structure and Reusability</a></li>
+<li><a href="#when-to-use-javabeans">When to Use JavaBeans?</a></li>
+<li><a href="#example-using-a-javabean-in-jsp">Example: Using a JavaBean in JSP</a></li>
+<li><a href="#bean-scopes">Bean Scopes</a></li>
+<li><a href="#benefits-of-using-javabeans-with-implicit-objects">Benefits of Using JavaBeans with Implicit Objects</a></li>
+<li><a href="#conclusion-1">Conclusion</a></li>
 </ul>
 </li>
 </ol>
-<h2 id="1-introduction-to-perception">1. Introduction to Perception</h2>
-<p>Perception is the process through which individuals interpret sensory information to understand their environment. It's a complex process influenced by various factors related to the situation, the target being perceived, and the perceiver themselves. Understanding these factors can improve interpersonal communication, reduce misunderstandings, and enhance decision-making in personal and professional settings. This study guide will explore the different facets of perception and the factors that influence it.</p>
-<h2 id="2-factors-influencing-perception">2. Factors Influencing Perception</h2>
-<p>Understanding the factors that influence perception is crucial for interpreting how individuals make sense of the world around them. These factors can be broadly categorized into three main areas: the situation, the target, and the perceiver.</p>
-<h3 id="21-the-situation">2.1 The Situation</h3>
-<p>The context or environment in which perception occurs significantly impacts how events or people are perceived. Key situational factors include:</p>
+<h2 id="jsp-fundamentals-introduction">JSP Fundamentals: Introduction</h2>
+<p>This section provides a foundational understanding of JavaServer Pages (JSP) technology, its advantages, and basic concepts.</p>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/IntroductionToJsp_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/IntroductionToJsp_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>JavaServer Pages (JSP) technology is used to create dynamic web applications, building upon Servlet technology. JSP offers enhanced functionality, such as Expression Language (EL), and simplifies web application development by allowing a separation of concerns between design and development.</p>
+<h3 id="what-is-jsp">What is JSP?</h3>
 <ul>
-<li><strong>Time:</strong> Time influences perception by creating urgency or relaxation. For example, deadlines might make a person perceive events more critically than during periods without time constraints. Morning perceptions may differ from evening ones due to varying energy levels or moods.</li>
-<li><strong>Work Setting:</strong> The physical and organizational work environment affects perception. A noisy, cluttered workplace might hinder clear perception, while a well-organized setting facilitates better interpretation. Organizational hierarchy, policies, and culture also shape how people perceive their roles and relationships.</li>
-<li><strong>Social Setting:</strong> The social context, including interactions with others, affects how we interpret behavior or events. An individual’s behavior at a casual social gathering may be perceived differently than the same behavior in a formal meeting.</li>
+<li>A JSP page consists of HTML tags and JSP tags.</li>
+<li>JSP pages are easier to maintain than Servlets.</li>
+<li>JSP provides additional features like Expression Language and Custom Tags.</li>
 </ul>
-<h3 id="22-the-target">2.2 The Target</h3>
-<p>The object or person being perceived (the target) significantly influences perception. Characteristics of the target include:</p>
+<h3 id="advantages-of-jsp-over-servlets">Advantages of JSP over Servlets</h3>
 <ul>
-<li><strong>Size:</strong> Larger or more prominent objects or individuals are more noticeable and tend to be perceived more distinctly. For example, a large billboard grabs more attention than a small poster.</li>
-<li><strong>Intensity:</strong> Stimuli with greater intensity (brighter colors, louder sounds, stronger smells) are more likely to catch attention. Example: A loudspeaker announcement stands out in a quiet room.</li>
-<li><strong>Background:</strong> The setting or backdrop in which the target exists affects perception. For instance, a bright object in a dark room is easily noticeable, while it may blend in with a similarly lit background.</li>
-<li><strong>Novelty:</strong> New or unusual objects or behaviors are more likely to attract attention. Example: A unique dress at a formal event is more noticeable than standard formal wear.</li>
-<li><strong>Proximity:</strong> Objects or people closer to the perceiver are noticed and interpreted more readily. Example: In a crowded room, individuals near the perceiver are more likely to be observed.</li>
-<li><strong>Motion:</strong> Moving objects are more likely to attract attention than stationary ones. Example: A moving car in a parking lot is noticed faster than parked cars.</li>
+<li><strong>Extension to Servlet:</strong> JSP builds upon Servlet technology.</li>
+<li><strong>Easy to Maintain:</strong> Separation of concerns makes maintenance simpler.</li>
+<li><strong>Fast Development:</strong> No need to recompile and redeploy the entire application for every change.</li>
+<li><strong>Less Code:</strong> JSP generally requires less code than Servlets for presentation logic.</li>
 </ul>
-<h3 id="23-the-perceiver">2.3 The Perceiver</h3>
-<p>The individual interpreting the sensory inputs also influences perception, as it depends on personal characteristics such as attitudes, motives, interests, experience, and expectations.</p>
+<h3 id="how-to-run-a-simple-jsp-page">How to Run a Simple JSP Page</h3>
+<ol>
+<li>Start the server (e.g., Apache Tomcat).</li>
+<li>Place the JSP file in a folder and deploy it on the server (usually in the <code>web-apps</code> directory).</li>
+<li>Access the JSP page through a browser using the URL: <code>http://localhost:portno/contextRoot/jspfile</code> (e.g., <code>http://localhost:8080/Sample1/index.jsp</code>).</li>
+</ol>
+<h3 id="sample-jsp-program">Sample JSP Program</h3>
+<p>```html</p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Welcome to JSP!</h1>
+<p>The current date and time is: <%= new java.util.Date() %></p>
+</body>
+</html>
+<p>```</p>
+<p>```html</p>
+<html>
+<head>
+<title>my jsp</title>
+</head>
+<body>
+<% out.println("My first JSP program"); %>
+</body>
+</html>
+<p>```</p>
+<p>Output:</p>
+<p><code>My first JSP program</code></p>
+<h3 id="the-jsp-api">The JSP API</h3>
+<p>The JSP API consists of two packages:</p>
+<ol>
+<li><code>javax.servlet.jsp</code></li>
+<li><code>javax.servlet.jsp.tagext</code></li>
+</ol>
+<h4 id="javaxservletjsp-package"><code>javax.servlet.jsp</code> package</h4>
+<p>This package contains interfaces and classes essential for JSP development.</p>
 <ul>
-<li><strong>Attitudes:</strong> A person’s attitudes shape how they view situations or people. For example, someone with a positive attitude toward teamwork may perceive group discussions more favorably.</li>
-<li><strong>Motives:</strong> Motivations or desires influence perception by directing focus toward relevant stimuli. Example: A job seeker may be more attentive to job-related advertisements than others.</li>
-<li><strong>Interests:</strong> Personal interests guide attention and perception. Example: A sports enthusiast is more likely to notice news about games or players than someone uninterested in sports.</li>
-<li><strong>Experience:</strong> Past experiences shape how people interpret current events or behaviors. Someone who has experienced workplace conflict may perceive minor disagreements as significant.</li>
-<li><strong>Expectations:</strong> Preconceived ideas or stereotypes influence perception by shaping how we interpret stimuli. If a manager expects an employee to perform poorly, they may perceive their work less favorably regardless of actual performance.</li>
+<li><strong>Interfaces:</strong><ul>
+<li><code>JspPage</code></li>
+<li><code>HttpJspPage</code></li>
 </ul>
-<h2 id="3-perceptual-selectivity">3. Perceptual Selectivity</h2>
-<p>Perceptual selectivity refers to the process by which individuals filter and focus on specific stimuli from their environment while ignoring others. This process is influenced by both external (stimulus-related) and internal (individual-related) factors.</p>
-<h3 id="31-external-attention-factors">3.1 External Attention Factors</h3>
-<p>These are characteristics of the stimuli themselves that make certain stimuli stand out and capture attention. Some of these overlap with the characteristics of "The Target" described in <a href="#factors-influencing-perception">Factors Influencing Perception</a>.</p>
+</li>
+<li><strong>Classes:</strong><ul>
+<li><code>JspWriter</code></li>
+<li><code>PageContext</code></li>
+<li><code>JspFactory</code></li>
+<li><code>JspEngineInfo</code></li>
+<li><code>JspException</code></li>
+<li><code>JspError</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="directory-structure-of-jsp">Directory Structure of JSP</h3>
+<p>JSP pages are typically placed outside the <code>WEB-INF</code> folder or in any other directory within the web application. This structure mirrors that of Servlets. See also <a href="#directory-structure-of-jsp-revisited">Directory Structure of JSP (Revisited)</a>.</p>
+<h3 id="javabean-integration">JavaBean Integration</h3>
+<p>JavaBeans are reusable components used to separate business logic from presentation logic within JSPs. See also <a href="#jsp-bean-components">JSP Bean Components</a> and <a href="#javabeans-in-jsp-enhancing-structure-and-reusability">JavaBeans in JSP: Enhancing Structure and Reusability</a>.</p>
 <ul>
-<li><strong>Intensity:</strong> Stimuli with higher intensity (e.g., loud sounds, bright lights) are more likely to draw attention than those with low intensity.</li>
-<li><strong>Size:</strong> Larger objects or stimuli tend to attract more attention compared to smaller ones.</li>
-<li><strong>Contrast:</strong> A stimulus that stands out against its background, such as a bright color on a dull background, is more noticeable.</li>
-<li><strong>Repetition:</strong> Repeated exposure to a stimulus can increase its likelihood of being noticed, as it reinforces its presence in the environment.</li>
-<li><strong>Motion:</strong> Moving stimuli are more likely to be noticed compared to static ones, as the human perceptual system is particularly sensitive to movement.</li>
-<li><strong>Novelty:</strong> New or unusual stimuli capture attention more easily because they deviate from what is expected.</li>
-<li><strong>Familiarity:</strong> Stimuli that are familiar to the observer can also draw attention due to recognition and relevance.</li>
+<li>Beans are instances of classes.</li>
+<li>They should be serializable (recommended).</li>
 </ul>
-<h3 id="32-internal-set-factors">3.2 Internal Set Factors</h3>
-<p>These are intrinsic to the individual and affect how they perceive and respond to stimuli. These also relate to the characteristics of "The Perceiver" in <a href="#factors-influencing-perception">Factors Influencing Perception</a>.</p>
+<h4 id="scopes-for-javabeans-in-jsp">Scopes for JavaBeans in JSP</h4>
 <ul>
-<li><strong>Learning:</strong> Past experiences and acquired knowledge influence what people pay attention to. For example, expertise in a specific field can make related stimuli more noticeable.</li>
-<li><strong>Expectations:</strong> Preconceived ideas or anticipation of certain stimuli can direct attention toward expected features while ignoring the unexpected.</li>
-<li><strong>Motivation:</strong> Personal interests, needs, or goals influence perceptual selectivity. For example, a thirsty person is more likely to notice water-related cues.</li>
-<li><strong>Personality:</strong> An individual's traits, such as introversion or extroversion, can affect how they engage with their environment. Extroverts may notice social cues more, while introverts might focus on abstract or solitary stimuli.</li>
+<li><strong>page:</strong> Exists only for the current page.</li>
+<li><strong>request:</strong> Exists as long as the request object is present.</li>
+<li><strong>session:</strong> Exists for the duration of the user's session.</li>
+<li><strong>application:</strong> Exists for the entire application.</li>
 </ul>
-<h2 id="4-perceptual-organization">4. Perceptual Organization</h2>
-<p>Perceptual organization refers to the way information is received by our senses and interpreted to make it meaningful. A lot of what we know about perceptual organization comes from Gestalt psychology. Gestalt psychologists believe that the human brain perceives a stimulus as a whole and not as the sum of its parts. Although research shows perceptual organization applies to all the senses, it has been most studied for visual perception. Visual perception is a process of grouping the elements of an object together to determine the meaning of the object as a whole.</p>
-<h3 id="41-gestalt-principles-of-perceptual-organization">4.1 Gestalt Principles of Perceptual Organization</h3>
-<p>Perceptual organization theory is based on Six rules or principles, also known as Gestalt Laws:</p>
+<h4 id="example-of-using-javabeans">Example of Using JavaBeans</h4>
+<p>```jsp
+&lt;%-- Declare the Bean --%&gt;
+<jsp:useBean id="stud" class="com.example.Student" scope="request" /></p>
+<p>&lt;%-- Set Bean Properties --%&gt;
+<jsp:setProperty name="stud" property="name" value="Ravi" />
+<jsp:setProperty name="stud" property="age" value="20" /></p>
+<p>&lt;%-- Get Bean Properties --%&gt;</p>
+<p>Name: <jsp:getProperty name="stud" property="name" /></p>
+<p>Age: <jsp:getProperty name="stud" property="age" /></p>
+<p>```</p>
+<h3 id="the-jsppage-interface">The <code>JspPage</code> Interface</h3>
+<p>All generated servlet classes must implement the <code>JspPage</code> interface, which extends the <code>Servlet</code> interface. It provides two lifecycle methods:</p>
+<ol>
+<li><code>public void jspInit():</code> Invoked once during the JSP's lifecycle for initialization, similar to the <code>init()</code> method of a Servlet.</li>
+<li><code>public void jspDestroy():</code> Invoked once before the JSP page is destroyed, used for cleanup operations.</li>
+</ol>
+<h3 id="jsp-directives">JSP Directives</h3>
+<p>Directives provide instructions to the JSP container. Common directives include: See also <a href="#jsp-directives-detailed">JSP Directives (Detailed)</a> and <a href="#jsp-directives-1">JSP Directives</a>.</p>
 <ul>
-<li>Law of Similarity</li>
-<li>Law of Prägnanz</li>
-<li>Law of Proximity</li>
-<li>Law of Continuity</li>
-<li>Law of Closure</li>
-<li>Law of Common Region</li>
+<li><strong>include:</strong> Includes the content of another resource.</li>
+<li><strong>taglib:</strong> Declares a tag library.</li>
+<li><strong>page:</strong> Defines page-specific attributes.</li>
 </ul>
-<h4 id="411-law-of-similarity">4.1.1 Law of Similarity</h4>
-<p>The law of similarity states that similar things tend to appear grouped together. Grouping can occur in both visual and auditory stimuli.</p>
-<h4 id="412-law-of-pragnanz">4.1.2 Law of Prägnanz</h4>
-<p>The law of prägnanz is sometimes referred to as the law of good figure or the law of simplicity. This law holds that when you're presented with a set of ambiguous or complex objects, your brain will make them appear as simple as possible. For example, when presented with the Olympic logo, you see overlapping circles rather than an assortment of curved, connected lines. The word prägnanz is a German term meaning "good figure."</p>
-<h4 id="413-law-of-proximity">4.1.3 Law of Proximity</h4>
-<p>According to the law of proximity, things that are close together seem more related than things that are spaced farther apart. In an arrangement of objects, the objects on the left appear to be part of one grouping while those on the right appear to be part of another, because objects close to each other are grouped together.</p>
-<h4 id="414-law-of-continuity">4.1.4 Law of Continuity</h4>
-<p>The law of continuity holds that points that are connected by straight or curving lines are seen in a way that follows the smoothest path. In other words, elements in a line or curve seem more related to one another than those positioned randomly.</p>
-<h4 id="415-law-of-closure">4.1.5 Law of Closure</h4>
-<p>According to the law of closure, we perceive elements as belonging to the same group if they seem to complete some entity. Our brains often ignore contradictory information and fill in gaps in information. For example, even when parts of a shape are missing, the brain fills in the gaps to create a meaningful image.</p>
-<h4 id="416-law-of-common-region">4.1.6 Law of Common Region</h4>
-<p>The Gestalt law of common region says that when elements are located in the same closed region, we perceive them as belonging to the same group. Creating a clearly defined boundary can overpower other Gestalt laws such as the law of proximity.</p>
-<h2 id="5-social-and-family-factors-influencing-perception">5. Social and Family Factors Influencing Perception</h2>
-<p>Beyond the immediate situation and individual characteristics, social and family factors also play a significant role in shaping perception.</p>
-<h3 id="51-social-factors">5.1 Social Factors</h3>
-<p>Interactions with society and peer groups significantly shape perception:</p>
+<h4 id="examples-of-directives">Examples of Directives</h4>
 <ul>
-<li><strong>Socialization Process:</strong> Schools, workplaces, and social groups teach norms, values, and roles that individuals adopt into their perceptions.</li>
-<li><strong>Shared Beliefs and Practices:</strong> Culture dictates what behaviors are acceptable and rewarded, influencing how individuals express themselves. For example, collectivist cultures value harmony, while individualistic cultures promote self-expression.</li>
-<li><strong>Ethnicity and Traditions:</strong> Ethnic backgrounds influence perception by instilling specific traditions, languages, and values.</li>
-<li><strong>Impact of Globalization:</strong> As cultures blend due to globalization, individuals may adopt hybrid identities, reflecting a mix of traditional and modern influences on their perceptions.</li>
+<li><strong>Import:</strong>
+    <code>jsp
+    &lt;%@ page import="java.util.Date" %&gt;</code></li>
+<li><strong>contentType:</strong>
+    <code>jsp
+    &lt;%@ page contentType="application/msword" %&gt;</code></li>
+<li><strong>info:</strong>
+    <code>jsp
+    &lt;%@ page info="composed for DS-A students" %&gt;</code></li>
 </ul>
-<h3 id="52-family-factors">5.2 Family Factors</h3>
-<p>The family environment plays a crucial role in the early formation of perception:</p>
+<h4 id="jsp-include-directive">Jsp Include Directive</h4>
+<p><code>jsp
+&lt;%@ include file="header.html" %&gt;</code></p>
+<h4 id="jsp-taglib-directive">JSP Taglib Directive</h4>
+<p><code>jsp
+&lt;%@ taglib uri="http://www.google.com/tags" prefix="mytag" %&gt;</code></p>
+<h3 id="lifecycle-of-a-jsp-page">Lifecycle of a JSP Page</h3>
+<p>The JSP lifecycle involves the following phases: See also <a href="#the-lifecycle-of-a-jsp-page-detailed">The Lifecycle of a JSP Page (Detailed)</a>.</p>
 <ul>
-<li><strong>Parenting Style:</strong> Authoritative parenting fosters confidence and independence, while authoritarian or neglectful parenting can lead to fearfulness or insecurity in perception.</li>
-<li><strong>Birth Order:</strong> Firstborns often develop leadership qualities, while younger siblings may be more sociable or rebellious due to differential parental expectations, influencing how they perceive their environment.</li>
-<li><strong>Family Environment:</strong> Warm, supportive environments encourage trust and optimism, whereas dysfunctional families may lead to anxiety, aggression, or low self-esteem, affecting perception.</li>
-<li><strong>Socioeconomic Status (SES):</strong> Wealthier families may foster ambition and confidence, while those with financial struggles might instill resilience or stress-related traits, shaping perception.
-```</li>
+<li><strong>Translation:</strong> JSP page is translated into a Servlet.</li>
+<li><strong>Compilation:</strong> The generated Servlet is compiled.</li>
+<li><strong>Classloading:</strong> The classloader loads the class file.</li>
+<li><strong>Instantiation:</strong> An object of the generated Servlet is created.</li>
+<li><strong>Initialization:</strong> The <code>jspInit()</code> method is invoked.</li>
+<li><strong>Request processing:</strong> The <code>_jspService()</code> method is invoked to handle requests.</li>
+<li><strong>Destroy:</strong> The <code>jspDestroy()</code> method is invoked before the JSP is destroyed.</li>
 </ul>
-            </body>
-            </html>
-            
+<h3 id="mvc-in-jsp">MVC in JSP</h3>
+<p>MVC (Model-View-Controller) is a design pattern that separates the business logic (Model), presentation logic (View), and control logic (Controller). JSP can be used as the View component in an MVC architecture.</p>
+<h3 id="jsp-scripting-elements">JSP Scripting Elements</h3>
+<p>JSP scripting elements allow embedding Java code within a JSP page. See also <a href="#jsp-scripting-elements-1">JSP Scripting Elements</a>.</p>
+<ul>
+<li><strong>Scriptlet tag:</strong> Executes Java source code.</li>
+<li><strong>Expression tag:</strong> Evaluates and outputs a Java expression.</li>
+<li><strong>Declaration tag:</strong> Declares variables and methods.</li>
+</ul>
+<h4 id="jsp-scriptlet-tag-example">JSP Scriptlet Tag Example</h4>
+<p>```html</p>
+<html>
+<body>
+<% out.print("welcome to jsp"); %>
+</body>
+</html>
+<p>```</p>
+<h2 id="jsp-page-anatomy">JSP Page Anatomy</h2>
+<p>This section delves into the anatomy of a JSP page, covering directives, implicit objects, and action tags.</p>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/JspPageAnatomy_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/JspPageAnatomy_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>Now that we've covered the basics of JSP, let's delve into the anatomy of a JSP page. This includes understanding directives, implicit objects, and action tags.</p>
+<h3 id="jsp-directives-detailed">JSP Directives (Detailed)</h3>
+<p>JSP directives are messages that instruct the web container on how to translate a JSP page into its corresponding servlet. The syntax for a JSP directive is:</p>
+<p><code>&lt;%@ directive attribute="value" %&gt;</code></p>
+<p>There are three main types of directives:</p>
+<ul>
+<li><strong>Page Directive:</strong> Defines attributes that apply to the entire JSP page.<ul>
+<li>Syntax:
+    <code>&lt;%@ page attribute="value" %&gt;</code></li>
+<li>Common attributes include:<ol>
+<li><strong>import:</strong> Imports Java classes to be used in the JSP page.</li>
+<li><strong>info:</strong> Defines a string that can be retrieved using the <code>getServletInfo()</code> method.</li>
+<li><strong>contentType:</strong> Sets the MIME type of the response.</li>
+<li><strong>extends:</strong> Specifies the superclass of the generated servlet.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><strong>Include Directive:</strong> Includes the content of another resource (e.g., JSP, HTML, or text file) during the translation phase. See also <a href="#jsp-include-directive">JSP Include Directive</a>.</li>
+<li><strong>Taglib Directive:</strong> Declares a tag library, making custom tags available for use in the JSP page. See also <a href="#jsp-taglib-directive">JSP Taglib Directive</a>.</li>
+</ul>
+<h3 id="jsp-action-tags-detailed">JSP Action Tags (Detailed)</h3>
+<p>JSP action tags are predefined elements that perform specific tasks, such as including resources, forwarding requests, or working with JavaBeans. They provide a way to control the flow between pages and interact with Java components.</p>
+<p>Common JSP action tags include: See also <a href="#jsp-action-tags">JSP Action Tags</a>.</p>
+<ul>
+<li><strong><code>&lt;jsp:include&gt;</code>:</strong> Includes the content of another resource at runtime. This is useful for dynamic content inclusion.<ul>
+<li>Example:
+    <code>html
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Include Action Example&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h2&gt;Including another JSP page below:&lt;/h2&gt;
+    &lt;jsp:include page="header.jsp"/&gt;
+    &lt;p&gt;This is the main page content.&lt;/p&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</code>
+    <code>html
+    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Insert title here&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+    &lt;h3&gt;This is the included header section.&lt;/h3&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</code></li>
+</ul>
+</li>
+<li><strong><code>&lt;jsp:forward&gt;</code>:</strong> Forwards the request to another resource. See also <a href="#jspforward-action"><code>&lt;jsp:forward&gt;</code> Action</a>.</li>
+<li><strong><code>&lt;jsp:useBean&gt;</code>:</strong> Creates or locates a JavaBean object. (See <a href="#javabean-integration">JavaBean Integration</a> above)</li>
+<li><strong><code>&lt;jsp:setProperty&gt;</code>:</strong> Sets the value of a property in a JavaBean. (See <a href="#javabean-integration">JavaBean Integration</a> above)</li>
+<li><strong><code>&lt;jsp:getProperty&gt;</code>:</strong> Retrieves the value of a property from a JavaBean. (See <a href="#javabean-integration">JavaBean Integration</a> above)</li>
+<li><strong><code>&lt;jsp:param&gt;</code>:</strong> Sets a parameter value for use with <code>&lt;jsp:forward&gt;</code> and <code>&lt;jsp:include&gt;</code>.</li>
+</ul>
+<h3 id="jsp-declaration-tag">JSP Declaration Tag</h3>
+<p>The JSP declaration tag is used to declare variables and methods within a JSP page. Code within a declaration tag is placed outside the <code>_jspService()</code> method of the auto-generated servlet, meaning it is initialized only once per servlet instance. See also <a href="#jsp-declaration-tag-1">JSP Declaration Tag</a>.</p>
+<ul>
+<li>Syntax:
+    <code>&lt;%! field or method declaration %&gt;</code></li>
+<li>Example:
+    <code>html
+    &lt;html&gt;
+    &lt;body&gt;
+    &lt;%! int data=50; %&gt;
+    &lt;%= "Value of the variable is:"+data %&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</code></li>
+</ul>
+<h3 id="the-httpjsppage-interface">The <code>HttpJspPage</code> Interface</h3>
+<p>The <code>HttpJspPage</code> interface extends the <code>JspPage</code> interface and provides a single lifecycle method: See also <a href="#the-jsppage-interface">The <code>JspPage</code> Interface</a>.</p>
+<ul>
+<li><code>public void _jspService():</code> This method is invoked each time a request for the JSP page is received by the container. It processes the request and generates the response. The underscore <code>_</code> indicates that this method should not be overridden.</li>
+</ul>
+<h3 id="jsp-implicit-objects">JSP Implicit Objects</h3>
+<p>JSP implicit objects are pre-defined objects that are automatically available within a JSP page. These objects provide access to various aspects of the server environment and the current request/response. See also <a href="#jsp-implicit-objects-1">JSP Implicit Objects</a> and <a href="#what-are-implicit-objects-in-jsp">What are Implicit Objects in JSP?</a>.</p>
+<p>The nine implicit objects are:</p>
+<ul>
+<li><strong>out:</strong> The <code>JspWriter</code> object used to write output to the response.</li>
+<li><strong>request:</strong> The <code>HttpServletRequest</code> object representing the client's request.</li>
+<li><strong>response:</strong> The <code>HttpServletResponse</code> object representing the server's response.</li>
+<li><strong>session:</strong> The <code>HttpSession</code> object representing the user's session.</li>
+<li><strong>application:</strong> The <code>ServletContext</code> object representing the web application.</li>
+<li><strong>config:</strong> The <code>ServletConfig</code> object for the JSP page.</li>
+<li><strong>pageContext:</strong> The <code>PageContext</code> object providing access to the page's context.</li>
+<li><strong>page:</strong> A reference to the JSP page instance (equivalent to <code>this</code>).</li>
+<li><strong>exception:</strong> The <code>Throwable</code> object representing an exception (only available in error pages).</li>
+</ul>
+<h2 id="jsp-processing-steps">JSP Processing Steps</h2>
+<p>This section examines the steps involved in processing a JSP request.</p>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/JspProcessingSteps_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/JspProcessingSteps_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>Having covered the anatomy of a JSP page, let's examine the steps involved in processing a JSP request.</p>
+<h3 id="jsp-expression-tag-revisited">JSP Expression Tag (Revisited)</h3>
+<p>The JSP expression tag is used to directly output the result of a Java expression to the response stream. This eliminates the need for explicit <code>out.print()</code> statements. See also <a href="#jsp-expression-tag">JSP Expression Tag</a>.</p>
+<ul>
+<li><strong>Syntax:</strong>
+    <code>&lt;%= statement %&gt;</code></li>
+<li><strong>Example:</strong>
+    <code>html
+    &lt;html&gt;
+    &lt;body&gt;
+    &lt;%= "welcome to jsp" %&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</code>
+    This code snippet will output "welcome to jsp" to the browser.</li>
+</ul>
+<h3 id="the-lifecycle-of-a-jsp-page-detailed">The Lifecycle of a JSP Page (Detailed)</h3>
+<p>The JSP lifecycle consists of several phases, managed by the JSP container: See also <a href="#lifecycle-of-a-jsp-page">Lifecycle of a JSP Page</a>.</p>
+<ol>
+<li><strong>Translation of JSP Page:</strong> The JSP page is translated into a Servlet.</li>
+<li><strong>Compilation of JSP Page:</strong> The generated Servlet is compiled into a class file.</li>
+<li><strong>Classloading:</strong> The classloader loads the generated class file.</li>
+<li><strong>Instantiation:</strong> An object of the generated Servlet class is created.</li>
+<li><strong>Initialization:</strong> The container invokes the <code>jspInit()</code> method.</li>
+<li><strong>Request Processing:</strong> The container invokes the <code>_jspService()</code> method to handle client requests.</li>
+<li><strong>Destroy:</strong> The container invokes the <code>jspDestroy()</code> method before unloading the JSP.</li>
+</ol>
+<h3 id="anatomycomponents-of-jsp-summary">Anatomy/Components of JSP (Summary)</h3>
+<p>A JSP page is built using various components:</p>
+<ol>
+<li><strong>Scriptlet Tag:</strong> Used to embed Java code within the JSP. See also <a href="#jsp-scriptlet-tag">JSP Scriptlet Tag</a>.</li>
+<li><strong>Expressions Tag:</strong> Used to output the result of a Java expression. See also <a href="#jsp-expression-tag">JSP Expression Tag</a>.</li>
+<li><strong>Declarations Tag:</strong> Used to declare variables and methods. See also <a href="#jsp-declaration-tag-1">JSP Declaration Tag</a>.</li>
+<li><strong>Action Tags:</strong> Provide predefined actions. See also <a href="#jsp-action-tags">JSP Action Tags</a>.</li>
+<li><strong>Custom Tags:</strong> User-defined tags for specific functionality.</li>
+<li><strong>Directives:</strong> Provide instructions to the JSP container. See also <a href="#jsp-directives-1">JSP Directives</a>.</li>
+</ol>
+<h3 id="directory-structure-of-jsp-revisited">Directory Structure of JSP (Revisited)</h3>
+<p>The directory structure for JSP pages is the same as for Servlets. JSP pages are typically placed outside the <code>WEB-INF</code> folder or in any directory within the web application's context. See also <a href="#directory-structure-of-jsp">Directory Structure of JSP</a>.</p>
+<h2 id="jsp-syntax">JSP Syntax</h2>
+<p>This unit explores the fundamental syntax of JavaServer Pages (JSP), covering directives, scripting elements (scriptlets, expressions, and declarations), action tags, and the overall structure of a JSP page.</p>
+<p>This unit explores the fundamental syntax of JavaServer Pages (JSP), covering directives, scripting elements (scriptlets, expressions, and declarations), action tags, and the overall structure of a JSP page. Understanding these elements is crucial for building dynamic web applications using JSP technology.</p>
+<h2 id="anatomy-of-a-jsp-page">Anatomy of a JSP Page</h2>
+<p>A JSP page consists of a mix of HTML markup and JSP elements that allow for dynamic content generation. The core components include:</p>
+<ol>
+<li><strong>Static HTML:</strong> Standard HTML elements that define the structure and presentation of the page.</li>
+<li><strong>JSP Directives:</strong> Instructions to the JSP container regarding how to process the page. See also <a href="#jsp-directives-1">JSP Directives</a>.</li>
+<li><strong>JSP Scripting Elements:</strong>  Java code fragments embedded within the page to perform logic and generate dynamic content. These include scriptlets, expressions, and declarations. See also <a href="#jsp-scripting-elements-1">JSP Scripting Elements</a>.</li>
+<li><strong>JSP Action Tags:</strong>  Predefined tags that perform specific actions, such as including files or forwarding requests. See also <a href="#jsp-action-tags">JSP Action Tags</a>.</li>
+<li><strong>Custom Tags:</strong> User-defined tags that encapsulate complex functionality, usually bundled within a Tag Library.</li>
+<li><strong>JSP Bean Components:</strong> Reusable software components that can be accessed and manipulated within a JSP page. See also <a href="#jsp-bean-components">JSP Bean Components</a>.</li>
+</ol>
+<h2 id="jsp-scripting-elements_1">JSP Scripting Elements</h2>
+<p>JSP scripting elements allow you to embed Java code directly into your JSP pages. There are three primary types of scripting elements: scriptlets, expressions, and declarations. See also <a href="#jsp-scripting-elements">JSP Scripting Elements</a>.</p>
+<h3 id="jsp-scriptlet-tag">JSP Scriptlet Tag</h3>
+<p>In JSP, Java code can be written inside the JSP page using the scriptlet tag. Scriptlets are blocks of Java code that are executed when the JSP page is processed by the server. They allow you to embed dynamic content and logic within your web pages.</p>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/JspCodeSnippets_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/JspCodeSnippets_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>A scriptlet tag is used to execute Java source code in JSP. The syntax is as follows:</p>
+<p><code>jsp
+&lt;% java source code %&gt;</code></p>
+<p><strong>Example:</strong></p>
+<p>```html</p>
+<html>
+<body>
+<% out.print("welcome to jsp"); %>
+</body>
+</html>
+<p>```</p>
+<p>This code snippet will output "welcome to jsp" to the HTML page.</p>
+<h3 id="jsp-expression-tag">JSP Expression Tag</h3>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/JspExpressions_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/JspExpressions_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>JSP expressions are used to insert Java code directly into the output stream of the response. The expression's value is automatically converted to a string and included in the output.</p>
+<p><strong>Syntax:</strong></p>
+<p><code>jsp
+&lt;%= statement %&gt;</code></p>
+<p>The <code>statement</code> can be any valid Java expression that evaluates to a value. This value will be converted to a string and inserted into the HTML output.</p>
+<p><strong>Example:</strong></p>
+<p>```html</p>
+<html>
+<body>
+<%= "welcome to jsp" %>
+</body>
+</html>
+<p>```</p>
+<p>In this example, the expression <code>&lt;%= "welcome to jsp" %&gt;</code> will output the string "welcome to jsp" directly into the HTML.</p>
+<p><strong>Key Differences Between Scriptlets and Expressions:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Scriptlet Tag (&lt;% ... %&gt;)</th>
+<th>Expression Tag (&lt;%= ... %&gt;)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Purpose</td>
+<td>Execute Java code</td>
+<td>Evaluate and output a value</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>Requires <code>out.print()</code> to write to output stream</td>
+<td>Automatically writes the value to output stream</td>
+</tr>
+<tr>
+<td>Syntax</td>
+<td><code>&lt;% java code %&gt;</code></td>
+<td><code>&lt;%= expression %&gt;</code></td>
+</tr>
+<tr>
+<td>Return Value</td>
+<td>No return value (typically)</td>
+<td>Must evaluate to a value</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Usage Scenarios:</strong></p>
+<p>JSP expressions are commonly used for:</p>
+<ul>
+<li>Displaying the value of a variable.</li>
+<li>Outputting the result of a method call.</li>
+<li>Embedding dynamic content within HTML.</li>
+</ul>
+<p>For example:</p>
+<p>```jsp</p>
+<html>
+<body>
+<h1>Hello, <%= request.getParameter("name") %>!</h1>
+</body>
+</html>
+<p>```</p>
+<p>This code snippet retrieves the value of the <code>name</code> parameter from the request and displays it within an <code>&lt;h1&gt;</code> tag.</p>
+<h3 id="jsp-declaration-tag_1">JSP Declaration Tag</h3>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/JspDeclarations_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/JspDeclarations_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>The JSP declaration tag is used to declare fields and methods within a JSP page. Code within a declaration tag is placed <em>outside</em> the <code>service()</code> method of the auto-generated servlet. This means that variables and methods declared here are class-level members, not local variables within the request-handling method. Consequently, they are initialized only once when the servlet is loaded and persist across multiple requests.</p>
+<p><strong>Syntax:</strong></p>
+<p><code>jsp
+&lt;%! field or method declaration %&gt;</code></p>
+<p><strong>Example:</strong></p>
+<p>```html</p>
+<html>
+<body>
+<%! int data=50; %>
+<%= "Value of the variable is:"+data %>
+</body>
+</html>
+<p>```</p>
+<p>In this example, the variable <code>data</code> is declared and initialized within the declaration tag. Because it's outside the <code>service()</code> method, it retains its value between requests. The expression tag <code>&lt;%= ... %&gt;</code> is then used to output the value of the variable.</p>
+<p><strong>Key Differences from Scriptlets:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Declaration Tag (&lt;%! ... %&gt;)</th>
+<th>Scriptlet Tag (&lt;% ... %&gt;)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Scope</td>
+<td>Class-level (fields and methods)</td>
+<td>Local to the <code>service()</code> method</td>
+</tr>
+<tr>
+<td>Initialization</td>
+<td>Once, when the servlet is loaded</td>
+<td>With each request</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>Values persist across multiple requests</td>
+<td>Values are reset with each request</td>
+</tr>
+<tr>
+<td>Usage</td>
+<td>Declaring fields and methods</td>
+<td>Executing code within a request</td>
+</tr>
+</tbody>
+</table>
+<h2 id="jsp-directives_1">JSP Directives</h2>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/JspDirectives_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/JspDirectives_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>JSP directives are messages that instruct the web container on how to translate a JSP page into its corresponding servlet. They provide global instructions that affect the entire JSP page. See also <a href="#jsp-directives-detailed">JSP Directives (Detailed)</a>.</p>
+<p><strong>Syntax:</strong></p>
+<p><code>jsp
+&lt;%@ directive attribute="value" %&gt;</code></p>
+<p>There are three main types of directives:</p>
+<ul>
+<li><strong>page directive:</strong> Defines attributes that apply to the entire JSP page (e.g., import statements, content type, error handling).</li>
+<li><strong>include directive:</strong> Includes another file into the JSP page during translation.</li>
+<li><strong>taglib directive:</strong> Declares a tag library for use in the JSP page.</li>
+</ul>
+<h3 id="jsp-page-directive">JSP Page Directive</h3>
+<p>The page directive defines several attributes that apply to the entire JSP page. It's used to set page-level settings such as import statements, content type, session management, and error handling.</p>
+<p><strong>Syntax:</strong></p>
+<p><code>jsp
+&lt;%@ page attribute="value" %&gt;</code></p>
+<p><strong>Attributes:</strong></p>
+<ol>
+<li><strong>import:</strong> Imports Java classes or packages.
+    <code>jsp
+    &lt;%@ page import="java.util.Date" %&gt;</code></li>
+<li><strong>info:</strong> Sets information about the JSP page.
+    <code>jsp
+    &lt;%@ page info="composed for DS-A students" %&gt;</code></li>
+<li><strong>extends:</strong> Specifies the superclass of the generated servlet.</li>
+<li><strong>contentType:</strong> Sets the MIME type of the response.
+    <code>jsp
+    &lt;%@ page contentType="application/msword" %&gt;</code></li>
+</ol>
+<h3 id="jsp-include-directive_1">JSP Include Directive</h3>
+<p>The include directive is used to include the contents of any resource, such as a JSP file, HTML file, or text file, into the current JSP page <em>during translation time</em>. This means the included file is merged with the JSP page before it is compiled into a servlet.</p>
+<p><strong>Syntax:</strong></p>
+<p><code>jsp
+&lt;%@ include file="resourceName" %&gt;</code></p>
+<p><strong>Example:</strong></p>
+<p><code>jsp
+&lt;%@ include file="header.html" %&gt;</code></p>
+<h3 id="jsp-taglib-directive_1">JSP Taglib Directive</h3>
+<p>The JSP taglib directive is used to declare a tag library for use in the JSP page, making the tags available for use within the page.</p>
+<p><strong>Syntax:</strong></p>
+<p><code>jsp
+&lt;%@ taglib uri="uriofthetaglibrary" prefix="prefixoftaglibrary" %&gt;</code></p>
+<ul>
+<li><code>uri</code>: The URI that identifies the tag library.</li>
+<li><code>prefix</code>: The prefix used to reference the tags in the JSP page.</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p><code>jsp
+&lt;%@ taglib uri="http://www.google.com/tags" prefix="mytag" %&gt;</code></p>
+<p>With this directive, you can use tags from the specified tag library using the <code>mytag</code> prefix, like <code>&lt;mytag:someTag /&gt;</code>.</p>
+<h2 id="jsp-action-tags">JSP Action Tags</h2>
+<p>JSP action tags are predefined tags that provide specific functionalities within a JSP page. They allow you to perform tasks such as including files, forwarding requests, and using JavaBeans. See also <a href="#jsp-action-tags-detailed">JSP Action Tags (Detailed)</a>.</p>
+<h3 id="jspforward-action"><code>&lt;jsp:forward&gt;</code> Action</h3>
+<p>The <code>&lt;jsp:forward&gt;</code> action is used to forward the request to another JSP page, HTML page, or servlet. This action transfers control to the specified resource without the client being aware of the change.</p>
+<p><strong>Example:</strong></p>
+<p>```html</p>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Forward Action Example</title>
+</head>
+<body>
+<h2>Forwarding to another JSP page...</h2>
+<jsp:forward page="destination.jsp"/>
+</body>
+</html>
+<p>```</p>
+<p>```html</p>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Destination Page</title>
+</head>
+<body>
+<h2>You have been forwarded to this page!</h2>
+</body>
+</html>
+<p>```</p>
+<p>In this example, <code>ForwardExample.jsp</code> forwards the request to <code>destination.jsp</code>. The client's browser will display the content of <code>destination.jsp</code> without knowing that the request was initially sent to <code>ForwardExample.jsp</code>.</p>
+<h2 id="jsp-bean-components">JSP Bean Components</h2>
+<p>JSP Beans are reusable software components. Key tags associated with JSP Beans include: See also <a href="#javabean-integration">JavaBean Integration</a>.</p>
+<ol>
+<li><code>&lt;jsp:useBean&gt;</code>: Specifies the scope of the bean.</li>
+<li><code>&lt;jsp:setProperty&gt;</code>: Sets values to bean class properties by calling setter methods.  Must be used inside <code>&lt;jsp:useBean&gt;</code>.</li>
+<li><code>&lt;jsp:getProperty&gt;</code>: Reads values of a bean class property by calling getter methods. Must be used outside <code>&lt;jsp:useBean&gt;</code>.</li>
+</ol>
+<h2 id="sample-jsp-program_1">Sample JSP Program</h2>
+<p>```html</p>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Welcome to JSP!</h1>
+<p>The current date and time is: <%= new java.util.Date() %></p>
+</body>
+</html>
+<p>```</p>
+<p>This sample program demonstrates a basic JSP page that displays a welcome message and the current date and time using a JSP expression.</p>
+<h2 id="jsp-implicit-objects_1">JSP Implicit Objects</h2>
+<p>This unit explores the concept of implicit objects, both in a general, conceptual sense and within the specific context of JavaServer Pages (JSP) technology.</p>
+<h2 id="introduction">Introduction</h2>
+<p>This unit explores the concept of implicit objects, both in a general, conceptual sense and within the specific context of JavaServer Pages (JSP) technology. We will begin by examining how implicit factors influence perception and interaction, then transition to understanding and utilizing the pre-defined implicit objects available in JSP for streamlined web application development. Finally, we'll explore how JavaBeans can be used in conjunction with implicit objects to create more organized and maintainable JSP applications.</p>
+<h2 id="understanding-implicit-influences">Understanding Implicit Influences</h2>
+<p>```html</p>
+<div class="video-container">
+    <video width="640" controls>
+        <source src="videos/UnderstandingImplicitObjects_animation.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <p><a href="videos/UnderstandingImplicitObjects_animation.mp4" download>Download this animation</a></p>
+</div>
+<p>```</p>
+<p>Before diving into JSP-specific implicit objects, it's crucial to understand the broader idea of how implicit factors shape our understanding and interactions.  These are the underlying, often unconscious, influences that affect our perceptions, attention, and relationships.</p>
+<h3 id="perception-and-implicit-objects">Perception and Implicit Objects</h3>
+<p>Perception is not a purely objective process; it's heavily influenced by implicit factors that act as filters or lenses through which we interpret sensory inputs. These can be categorized based on the target, the perceiver, and external/internal factors influencing attention.</p>
+<ul>
+<li>
+<p><strong>The Target:</strong> The characteristics of the object or person being perceived.</p>
+<ul>
+<li><em>Size:</em> Larger objects are more noticeable.</li>
+<li><em>Intensity:</em> Brighter colors or louder sounds grab attention.</li>
+<li><em>Background:</em> Context influences perception.</li>
+<li><em>Novelty:</em> Unusual things attract attention.</li>
+<li><em>Proximity:</em> Closer objects are more readily observed.</li>
+<li><em>Motion:</em> Moving objects are more noticeable.</li>
+</ul>
+</li>
+<li>
+<p><strong>The Perceiver:</strong> The individual's characteristics influence perception.</p>
+<ul>
+<li><em>Attitudes:</em> Pre-existing attitudes shape views.</li>
+<li><em>Motives:</em> Desires direct focus.</li>
+</ul>
+</li>
+<li>
+<p><strong>External Factors Influencing Attention:</strong></p>
+<ul>
+<li><em>Contrast:</em> Stimuli that stand out are more noticeable.</li>
+<li><em>Repetition:</em> Repeated exposure increases noticeability.</li>
+<li><em>Motion:</em> Moving stimuli attract attention.</li>
+<li><em>Novelty:</em> New stimuli capture attention.</li>
+<li><em>Familiarity:</em> Recognizable stimuli draw attention.</li>
+</ul>
+</li>
+<li>
+<p><strong>Internal Set Factors Influencing Attention:</strong></p>
+<ul>
+<li><em>Learning:</em> Past experiences influence attention.</li>
+<li><em>Expectations:</em> Preconceived ideas direct attention.</li>
+<li><em>Motivation:</em> Personal interests influence perception.</li>
+<li><em>Personality:</em> Individual traits affect engagement.</li>
+</ul>
+</li>
+</ul>
+<p>In this context, the <em>implicit objects</em> are the underlying biases, experiences, and contextual elements that shape how we perceive a target.</p>
+<h3 id="transactional-analysis-ta-and-implicit-relational-objects">Transactional Analysis (TA) and Implicit Relational Objects</h3>
+<p>Transactional Analysis (TA) provides a framework for understanding interpersonal interactions.</p>
+<ul>
+<li></li>
+</ul>
+    </body>
+    </html>
+    
